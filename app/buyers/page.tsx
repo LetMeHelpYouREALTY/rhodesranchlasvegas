@@ -139,7 +139,7 @@ export default function BuyersPage() {
         <div className="grid gap-6 md:grid-cols-2 md:items-center">
           <div>
             <h2 className="text-2xl font-semibold text-emerald-950">
-              Explore the Neighborhood Before You Offer
+              Explore golf, recreation, and commute before you offer
             </h2>
             <p className="mt-3 leading-relaxed text-slate-700">
               Lifestyle, golf, and nearby attractions help you decide if Rhodes Ranch fits your daily
@@ -154,7 +154,7 @@ export default function BuyersPage() {
           </div>
           <SectionFigure
             imageId="section-trails"
-            caption="Explore the Neighborhood Before You Offer"
+            caption="Explore golf, recreation, and commute before you offer"
           />
         </div>
       </section>
@@ -170,6 +170,11 @@ export default function BuyersPage() {
 
       <section className="mt-12 border-t border-emerald-900/10 pt-10">
         <h3 className="text-xl font-semibold text-emerald-950">Ready for the next step?</h3>
+        <SectionFigure
+          imageId="hero-consultation"
+          caption="Ready for the next step?"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-slate-700">
           Tell us your timeline and must-haves—we will suggest a search plan and tour strategy for
           Rhodes Ranch Las Vegas homes.

@@ -9,6 +9,7 @@ import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
@@ -87,6 +88,11 @@ export default function SearchPage() {
         headingId="search-listings-heading"
         listingIntro="Refine by price, status, and property type, then request private tours in Rhodes Ranch, Spring Valley, and nearby southwest Las Vegas."
         listingMountStrategy="immediate"
+      />
+      <ListingTourSection
+        heading="Tour homes from this Rhodes Ranch search"
+        headingId="tour-search-heading"
+        body="Save favorites in the grid, then call or text for a private showing plan. Guard-gated addresses usually need a booked window—not a drive-up visit."
       />
       <section className="mt-14 rounded-2xl border border-stone-200/80 bg-white p-6 shadow-[0_6px_24px_rgb(0_0_0_/0.05)] ring-1 ring-stone-900/5 sm:p-8">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">

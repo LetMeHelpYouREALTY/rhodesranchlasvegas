@@ -37,6 +37,9 @@ export function SiteHeader({ className }: { className?: string }) {
           <span className="mt-0.5 block text-[11px] leading-snug text-stone-600">
             {siteContact.legalBrokerage}
           </span>
+          <span className="mt-0.5 block text-[11px] leading-snug text-stone-600">
+            {siteContact.fullAddressLine}
+          </span>
         </Link>
         <nav
           aria-label="Primary"

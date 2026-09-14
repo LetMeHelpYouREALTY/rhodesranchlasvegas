@@ -8,7 +8,10 @@ import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { homesUnder500kFaq } from "@/lib/faq-listing-segments";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { siteContact } from "@/lib/site-contact";
 
@@ -40,6 +43,7 @@ export default function RhodesRanchHomesUnder500kPage() {
           description: "Budget-focused Rhodes Ranch listings page for homes under $500k in Las Vegas 89148.",
         })}
       />
+      <JsonLd data={faqPageJsonLd(homesUnder500kFaq)} />
 
       <PageBreadcrumbs
         items={[
@@ -80,6 +84,21 @@ export default function RhodesRanchHomesUnder500kPage() {
         listingIntro="Active homes near the under-$500k target, plus map filters to compare alternatives in 89148."
         listingMountStrategy="immediate"
       />
+      <ListingTourSection
+        heading="Tour Rhodes Ranch homes in this price band"
+        headingId="tour-under-500k-heading"
+        body="Price and status move quickly in this band. Confirm the community name on each card, then call so we can book gated access and a daylight walk-through."
+        imageId="hero-starter-home"
+      />
+      <div className="mt-14">
+        <FaqSection
+          id="under-500k-faq"
+          titleLevel={3}
+          heading="Homes under $500k FAQ"
+          items={homesUnder500kFaq}
+          imageId="hero-starter-home"
+        />
+      </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />
       <div className="mt-14">
         <NapBlock />

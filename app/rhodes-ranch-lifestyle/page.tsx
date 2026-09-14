@@ -288,6 +288,11 @@ export default function RhodesRanchLifestylePage() {
           <h3 id="cta-heading" className="font-display text-xl font-semibold text-emerald-950">
             Want to go deeper?
           </h3>
+          <SectionFigure
+            imageId="hero-consultation"
+            caption="Want to go deeper?"
+            className="mt-4 max-w-xl"
+          />
           <p className="mt-3 leading-relaxed">
             For a no-obligation conversation about buying or selling in Rhodes Ranch, call{" "}
             <a
@@ -322,6 +327,11 @@ export default function RhodesRanchLifestylePage() {
         >
           Recreation and landmarks (editorial)
         </h3>
+        <SectionFigure
+          imageId="section-landmarks"
+          caption="Recreation and landmarks (editorial)"
+          className="mt-4 max-w-xl"
+        />
         <p className="max-w-3xl text-sm leading-relaxed text-stone-600">
           Quick links to official or authoritative sites—same list as our short &ldquo;nearby&rdquo;
           reference. Not sponsored.
@@ -350,6 +360,11 @@ export default function RhodesRanchLifestylePage() {
 
       <section className="mt-12 rounded-2xl border border-dashed border-emerald-900/30 bg-emerald-50/40 p-6">
         <h3 className="font-display text-xl font-semibold text-emerald-950">Work with a local REALTOR®</h3>
+        <SectionFigure
+          imageId="section-private-tour"
+          caption="Work with a local REALTOR®"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-stone-700">
           Return to the{" "}
           <Link href="/" className="font-medium text-emerald-900 underline-offset-2 hover:underline">

@@ -5,11 +5,14 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { NapBlock } from "@/components/sections/NapBlock";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { defaultMetadata, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { weekdayOpenHouseFaq } from "@/lib/faq-listing-segments";
 import {
   type WeekdaySlug,
   WEEKDAY_SLUGS,
@@ -66,6 +69,7 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
           description: intro.length > 300 ? `${intro.slice(0, 297).trim()}…` : intro,
         })}
       />
+      <JsonLd data={faqPageJsonLd(weekdayOpenHouseFaq)} />
       <PageBreadcrumbs
         items={[
           { name: "Home", path: "/" },
@@ -102,6 +106,23 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
         headingId={`open-house-${raw}-listings-heading`}
         listingIntro={`Broker open house search for ${label}—confirm date and time on each listing card, then use the hub map when you plan multiple stops across ${siteContact.address.postalCode}.`}
       />
+
+      <ListingTourSection
+        heading={`Plan ${label} tours in Rhodes Ranch and 89148`}
+        headingId={`tour-${raw}-heading`}
+        body="Confirm hours on each MLS card, then call if a gated address needs RSVP. The weekend map on the open-houses hub is the fastest way to sequence stops."
+        imageId="section-weekday-tours"
+      />
+
+      <div className="mt-14">
+        <FaqSection
+          id={`open-house-${raw}-faq`}
+          titleLevel={3}
+          heading={`${label} open house FAQ`}
+          items={weekdayOpenHouseFaq}
+          imageId="hero-open-house"
+        />
+      </div>
 
       <LocalExploreNav currentPath={`/open-houses/${raw}`} className="mt-14" />
 

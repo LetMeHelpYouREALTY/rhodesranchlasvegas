@@ -8,7 +8,10 @@ import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { newListingsFaq } from "@/lib/faq-listing-segments";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { siteContact } from "@/lib/site-contact";
 
@@ -40,6 +43,7 @@ export default function RhodesRanchNewListingsPage() {
           description: "Fresh Rhodes Ranch listings page focused on newly available homes for sale in 89148.",
         })}
       />
+      <JsonLd data={faqPageJsonLd(newListingsFaq)} />
 
       <PageBreadcrumbs
         items={[
@@ -80,6 +84,20 @@ export default function RhodesRanchNewListingsPage() {
         listingIntro="Newest available homes in Rhodes Ranch and surrounding 89148 zones. Confirm status quickly and book showings."
         listingMountStrategy="immediate"
       />
+      <ListingTourSection
+        heading="Tour these new Rhodes Ranch listings"
+        headingId="tour-new-listings-heading"
+        body="Newly listed homes in gated sections often need a booked showing window. Call or text for access, then compare with the full MLS list if you want more options."
+      />
+      <div className="mt-14">
+        <FaqSection
+          id="new-listings-faq"
+          titleLevel={3}
+          heading="New Rhodes Ranch listings FAQ"
+          items={newListingsFaq}
+          imageId="hero-new-listing"
+        />
+      </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />
       <div className="mt-14">
         <NapBlock />

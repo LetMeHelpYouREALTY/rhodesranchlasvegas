@@ -5,6 +5,7 @@ import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -98,6 +99,11 @@ export default function RhodesRanchMlsListingsPage() {
         headingId="rhodes-ranch-mls-listings-heading"
         listingIntro="Active MLS listings for Rhodes Ranch and nearby southwest Las Vegas. Save favorites, compare homes, and request private tours."
         listingMountStrategy="immediate"
+      />
+      <ListingTourSection
+        heading="Tour Rhodes Ranch MLS listings with gated access"
+        headingId="tour-mls-listings-heading"
+        body="Filter the grid, then call so we can book showings in guard-gated sections and compare nearby 89148 options on the same route."
       />
       <section className="mt-14 rounded-2xl border border-stone-200/80 bg-white p-6 shadow-[0_6px_24px_rgb(0_0_0_/0.05)] ring-1 ring-stone-900/5 sm:p-8">
         <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">

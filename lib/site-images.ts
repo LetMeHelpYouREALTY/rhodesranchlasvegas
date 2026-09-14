@@ -94,6 +94,24 @@ export const SITE_IMAGES = {
     height: 864,
     heading: "From search to keys: what Las Vegas buyers typically do",
   },
+  "section-weekday-tours": {
+    alt: "Weekly open house tour plan and map beside a Rhodes Ranch Las Vegas golf community view",
+    width: 1280,
+    height: 720,
+    heading: "Open houses by day of the week",
+  },
+  "section-private-tour": {
+    alt: "Guard-gated entrance to a southwest Las Vegas golf community near Rhodes Ranch 89148",
+    width: 1152,
+    height: 864,
+    heading: "Schedule a private Rhodes Ranch tour",
+  },
+  "section-landmarks": {
+    alt: "Desert walking path beside golf fairways and mountains near Rhodes Ranch Las Vegas",
+    width: 1152,
+    height: 864,
+    heading: "Recreation and landmarks near Rhodes Ranch",
+  },
   "og-share": {
     alt: "Rhodes Ranch Las Vegas golf community aerial for social sharing",
     width: 1280,

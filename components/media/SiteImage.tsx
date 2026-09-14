@@ -7,6 +7,7 @@ type SiteImageProps = {
   id: SiteImageId;
   /** Override default heading-matched alt (keep location/service language). */
   alt?: string;
+  /** Hero / LCP: eager load + high fetch priority (Next.js 16; `priority` is deprecated). */
   priority?: boolean;
   sizes?: string;
   className?: string;
@@ -33,8 +34,9 @@ export function SiteImage({
       alt={alt ?? meta.alt}
       width={meta.width}
       height={meta.height}
-      priority={priority}
       sizes={sizes}
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
       unoptimized={isRemoteSiteImageSrc(src)}
       className={cn(
         "h-auto w-full rounded-2xl object-cover shadow-[0_8px_30px_rgb(0_0_0_/0.08)] ring-1 ring-stone-900/5",

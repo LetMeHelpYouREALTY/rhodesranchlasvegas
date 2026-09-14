@@ -8,7 +8,10 @@ import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { poolHomesFaq } from "@/lib/faq-listing-segments";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { siteContact } from "@/lib/site-contact";
 
@@ -40,6 +43,7 @@ export default function RhodesRanchPoolHomesPage() {
           description: "Feature-focused Rhodes Ranch listings page for pool homes in Las Vegas 89148.",
         })}
       />
+      <JsonLd data={faqPageJsonLd(poolHomesFaq)} />
 
       <PageBreadcrumbs
         items={[
@@ -80,6 +84,21 @@ export default function RhodesRanchPoolHomesPage() {
         listingIntro="Pool-oriented listings and nearby options in 89148. Use filters and map search for the right mix of price and features."
         listingMountStrategy="immediate"
       />
+      <ListingTourSection
+        heading="Tour Rhodes Ranch pool homes in daylight"
+        headingId="tour-pool-homes-heading"
+        body="See the yard, equipment, and setbacks in person before you write an offer. We coordinate gated access and a showing window that fits your schedule."
+        imageId="hero-pool"
+      />
+      <div className="mt-14">
+        <FaqSection
+          id="pool-homes-faq"
+          titleLevel={3}
+          heading="Rhodes Ranch pool homes FAQ"
+          items={poolHomesFaq}
+          imageId="hero-pool"
+        />
+      </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />
       <div className="mt-14">
         <NapBlock />
