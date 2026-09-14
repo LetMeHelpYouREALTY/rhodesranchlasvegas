@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Geist } from "next/font/google";
 import Script from "next/script";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { CalendlyBadge } from "@/components/calendly/CalendlyBadge";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -67,6 +68,7 @@ export default function RootLayout({
         <div className="flex-1">{children}</div>
         <SiteFooter />
         <CalendlyBadge />
+        <SpeedInsights />
       </body>
     </html>
   );
