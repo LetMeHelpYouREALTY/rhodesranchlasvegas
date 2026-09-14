@@ -46,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${geistSans.variable} ${cormorant.variable} h-full antialiased`}>
       <head>
-        <link rel="dns-prefetch" href="https://maps.google.com" />
+        <link rel="dns-prefetch" href="https://imagedelivery.net" />
         <link rel="preconnect" href="https://maps.googleapis.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
         <link rel="dns-prefetch" href="https://www.google-analytics.com" />

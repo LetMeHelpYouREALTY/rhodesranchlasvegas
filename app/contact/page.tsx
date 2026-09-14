@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CalendlyInline } from "@/components/calendly/CalendlyInline";
 import { DirectionsToOfficeDynamic } from "@/components/directions/DirectionsToOfficeDynamic";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
@@ -9,6 +12,7 @@ import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { MapEmbed } from "@/components/sections/MapEmbed";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { contactFaq } from "@/lib/faq-contact";
 import { metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
@@ -44,7 +48,13 @@ export default function ContactPage() {
         })}
       />
       <JsonLd data={faqPageJsonLd(contactFaq)} />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Contact", path: "/contact" },
+        ]}
+      />
+      <PageHero imageId="hero-consultation">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Get in touch
         </p>
@@ -64,7 +74,8 @@ export default function ContactPage() {
           </a>
           , or email—hours: {siteContact.hoursSummaryLine}
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <section
         className="mt-10 max-w-3xl rounded-2xl border border-stone-200/90 bg-white p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
@@ -76,6 +87,11 @@ export default function ContactPage() {
         >
           About {siteContact.businessName}
         </h2>
+        <SectionFigure
+          imageId="hero-office"
+          caption={`About ${siteContact.businessName}`}
+          className="mt-4"
+        />
         <p className="mt-4 text-base leading-relaxed text-stone-700">
           {siteContact.gbpBusinessDescription}
         </p>
@@ -111,6 +127,11 @@ export default function ContactPage() {
         >
           Schedule a private 15-minute conversation
         </h2>
+        <SectionFigure
+          imageId="hero-consultation"
+          caption="Schedule a private 15-minute conversation"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-3 max-w-2xl text-sm leading-relaxed text-stone-600">
           Pick a time that works for you. Prefer phone or email first? Use the Office and contact
           section below for the same phone number, address, and inboxes.
@@ -168,6 +189,7 @@ export default function ContactPage() {
         </div>
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-emerald-950">Map and Service Area</h2>
+          <SectionFigure imageId="hero-aerial-map" caption="Map and Service Area" />
           <MapEmbed
             title={`Office map — ${siteContact.fullAddressLine} (${siteContact.legalBrokerage})`}
           />

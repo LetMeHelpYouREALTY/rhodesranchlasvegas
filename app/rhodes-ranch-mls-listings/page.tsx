@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
@@ -43,7 +47,13 @@ export default function RhodesRanchMlsListingsPage() {
       />
       <JsonLd data={faqPageJsonLd(rhodesMlsFaq)} />
 
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Rhodes Ranch MLS listings", path: canonicalPath },
+        ]}
+      />
+      <PageHero imageId="hero-living-room">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           MLS search · Rhodes Ranch · 89148
         </p>
@@ -63,7 +73,8 @@ export default function RhodesRanchMlsListingsPage() {
         <p className="mt-3 text-sm text-stone-600">
           Compare these results with Google search output: <GoogleSearchShareLink />.
         </p>
-        <LastUpdatedNote reviewedMonthYear="April 2026" className="mt-4" />
+        <LastUpdatedNote reviewedMonthYear="September 2026" className="mt-4" />
+        <GbpActionBar />
         <div className="mt-5 flex flex-wrap gap-3">
           <Link
             href="/contact#schedule"
@@ -78,7 +89,7 @@ export default function RhodesRanchMlsListingsPage() {
             Rhodes Ranch Community Hub
           </Link>
         </div>
-      </header>
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -92,6 +103,11 @@ export default function RhodesRanchMlsListingsPage() {
         <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">
           Related Rhodes Ranch Listing Searches
         </h2>
+        <SectionFigure
+          imageId="hero-new-listing"
+          caption="Related Rhodes Ranch Listing Searches"
+          className="mt-4 max-w-xl"
+        />
         <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-stone-700">
           <li>
             <Link href="/rhodes-ranch-new-listings" className="font-medium text-emerald-900 hover:underline">

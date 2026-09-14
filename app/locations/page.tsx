@@ -1,9 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { DirectionsToOfficeDynamic } from "@/components/directions/DirectionsToOfficeDynamic";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LocationsMyMapEmbed } from "@/components/sections/LocationsMyMapEmbed";
 import { MapEmbed } from "@/components/sections/MapEmbed";
 import { NapBlock } from "@/components/sections/NapBlock";
@@ -46,7 +50,13 @@ export default function LocationsPage() {
         })}
       />
 
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Locations", path },
+        ]}
+      />
+      <PageHero imageId="hero-office">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           NAP &amp; maps · {siteContact.address.postalCode}
         </p>
@@ -67,7 +77,8 @@ export default function LocationsPage() {
           <GoogleSearchShareLink className="font-medium text-emerald-900 underline-offset-2 hover:underline" />
           .
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <LocationsMyMapEmbed
         className="mt-12"
@@ -85,6 +96,11 @@ export default function LocationsPage() {
         >
           Primary office and map
         </h2>
+        <SectionFigure
+          imageId="hero-office"
+          caption="Primary office and map"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 max-w-2xl text-sm text-stone-600">
           Door-to-door map for {siteContact.fullAddressLine} ({siteContact.legalBrokerage}). Use
           multi-mode directions below when you are ready to drive.

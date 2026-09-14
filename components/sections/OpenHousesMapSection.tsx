@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { startTransition, useEffect, useRef, useState } from "react";
+import { SiteImage } from "@/components/media/SiteImage";
 import { siteContact } from "@/lib/site-contact";
 
 function viewerUrlFromEmbed(embedUrl: string): string {
@@ -73,12 +74,18 @@ export function OpenHousesMapSection() {
       className="mt-10 rounded-2xl border border-stone-200/90 bg-white p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
       aria-labelledby="open-houses-map-heading"
     >
-      <h3
-        id="open-houses-map-heading"
-        className="font-display text-2xl font-semibold tracking-tight text-emerald-950 sm:text-[1.65rem]"
-      >
-        Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?
-      </h3>
+        <h3
+          id="open-houses-map-heading"
+          className="font-display text-2xl font-semibold tracking-tight text-emerald-950 sm:text-[1.65rem]"
+        >
+          Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?
+        </h3>
+        <SiteImage
+          id="hero-open-house"
+          sizes="(max-width: 768px) 100vw, 720px"
+          caption="Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?"
+          className="mt-4"
+        />
       <p className="mt-3 max-w-3xl leading-relaxed text-stone-700">
         <strong>{secondaryContactName}</strong>, {secondaryContactTitle}, hosts the current tour
         lineup on a live Google Map covering Rhodes Ranch, Spring Valley, and nearby Las Vegas

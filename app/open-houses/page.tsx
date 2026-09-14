@@ -1,11 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { OpenHousesMapSection } from "@/components/sections/OpenHousesMapSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { defaultMetadata, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { WEEKDAY_SLUGS, weekdayMeta } from "@/lib/open-houses-weekdays";
@@ -38,7 +41,13 @@ export default function OpenHousesHubPage() {
           description: `Weekend map, MLS open house search, and day-by-day planning for ${siteContact.serviceAreaDescription}.`,
         })}
       />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Open houses", path: "/open-houses" },
+        ]}
+      />
+      <PageHero imageId="hero-open-house">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Open houses · {siteContact.address.postalCode}
         </p>
@@ -54,7 +63,8 @@ export default function OpenHousesHubPage() {
           <GoogleSearchShareLink className="font-medium text-emerald-900 underline-offset-2 hover:underline" />{" "}
           for how Google surfaces the community name.
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"

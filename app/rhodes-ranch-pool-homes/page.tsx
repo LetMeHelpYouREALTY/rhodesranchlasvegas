@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
@@ -38,7 +41,13 @@ export default function RhodesRanchPoolHomesPage() {
         })}
       />
 
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Rhodes Ranch pool homes", path: canonicalPath },
+        ]}
+      />
+      <PageHero imageId="hero-pool">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Feature search · Pool homes · 89148
         </p>
@@ -59,8 +68,9 @@ export default function RhodesRanchPoolHomesPage() {
           </Link>
           .
         </p>
-        <LastUpdatedNote reviewedMonthYear="April 2026" className="mt-4" />
-      </header>
+        <LastUpdatedNote reviewedMonthYear="September 2026" className="mt-4" />
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"

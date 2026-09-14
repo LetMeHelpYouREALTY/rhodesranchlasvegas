@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
@@ -7,6 +10,7 @@ import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
 import { rhodesMlsFaq } from "@/lib/faq-rhodes-mls";
@@ -39,7 +43,13 @@ export default function SearchPage() {
         })}
       />
       <JsonLd data={faqPageJsonLd(rhodesMlsFaq.slice(0, 4))} />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Homes for sale", path: "/search" },
+        ]}
+      />
+      <PageHero imageId="hero-living-room">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Home search · {siteContact.address.postalCode}
         </p>
@@ -66,8 +76,9 @@ export default function SearchPage() {
             Back to Rhodes Ranch overview
           </Link>
         </p>
-        <LastUpdatedNote reviewedMonthYear="April 2026" className="mt-4" />
-      </header>
+        <LastUpdatedNote reviewedMonthYear="September 2026" className="mt-4" />
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -81,6 +92,11 @@ export default function SearchPage() {
         <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">
           Popular Rhodes Ranch Listing Paths
         </h2>
+        <SectionFigure
+          imageId="hero-new-listing"
+          caption="Popular Rhodes Ranch Listing Paths"
+          className="mt-4 max-w-xl"
+        />
         <ul className="mt-4 list-disc space-y-2 pl-5 text-sm leading-relaxed text-stone-700">
           <li>
             <Link href="/rhodes-ranch-mls-listings" className="font-medium text-emerald-900 hover:underline">

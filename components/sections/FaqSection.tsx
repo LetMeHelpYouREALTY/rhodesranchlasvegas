@@ -1,4 +1,6 @@
 import type { FaqItem } from "@/lib/schema";
+import { SectionFigure } from "@/components/media/SectionFigure";
+import type { SiteImageId } from "@/lib/site-images";
 
 type FaqSectionProps = {
   id: string;
@@ -8,6 +10,7 @@ type FaqSectionProps = {
    * h2: dedicated FAQ routes (e.g. /questions). h3: hub pages where max three h2/slot is reserved for page-level sections.
    */
   titleLevel?: 2 | 3;
+  imageId?: SiteImageId;
 };
 
 export function FaqSection({
@@ -15,11 +18,15 @@ export function FaqSection({
   heading,
   items,
   titleLevel = 3,
+  imageId,
 }: FaqSectionProps) {
   const TitleTag: "h2" | "h3" = titleLevel === 2 ? "h2" : "h3";
   const QuestionTag: "h3" | "h4" = titleLevel === 2 ? "h3" : "h4";
   return (
     <section aria-labelledby={id} className="space-y-6">
+      {imageId ? (
+        <SectionFigure imageId={imageId} caption={heading} className="max-w-xl" />
+      ) : null}
       <TitleTag
         id={id}
         className="font-display text-2xl font-semibold tracking-tight text-emerald-950"

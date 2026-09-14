@@ -26,6 +26,16 @@ const csp = [
  * files to confirm; meaningful reduction may require a Next upgrade (see vercel/next.js discussions on modern output). */
 
 const nextConfig: NextConfig = {
+  images: {
+    formats: ["image/avif", "image/webp"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "imagedelivery.net",
+        pathname: "/**",
+      },
+    ],
+  },
   /** Tailwind-friendly: inline CSS in production to shorten the HTML → stylesheet critical chain (FCP/LCP). */
   experimental: {
     inlineCss: true,

@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { DirectionsToOfficeDynamic } from "@/components/directions/DirectionsToOfficeDynamic";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { MapEmbed } from "@/components/sections/MapEmbed";
@@ -9,6 +12,7 @@ import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { rhodesRanchFaq } from "@/lib/faq-rhodes-ranch";
 import { publicEnv } from "@/lib/env";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
@@ -56,8 +60,14 @@ export default function RhodesRanchLasVegasHubPage() {
         })}
       />
       <JsonLd data={faqPageJsonLd(rhodesRanchFaq)} />
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Rhodes Ranch Las Vegas", path: canonicalPath },
+        ]}
+      />
 
-      <header className="max-w-3xl">
+      <PageHero imageId="hero-homes">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Local hub · {siteContact.address.postalCode} · Southwest Las Vegas
         </p>
@@ -80,8 +90,9 @@ export default function RhodesRanchLasVegasHubPage() {
           <strong>{siteContact.secondaryContactName}</strong> for tours and pricing context—without
           hype or unverified market claims.
         </p>
-        <LastUpdatedNote reviewedMonthYear="April 2026" className="mt-4" />
-        <div className="mt-8 flex flex-wrap gap-3">
+        <LastUpdatedNote reviewedMonthYear="September 2026" className="mt-4" />
+        <GbpActionBar />
+        <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/rhodes-ranch-mls-listings"
             className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
@@ -116,7 +127,7 @@ export default function RhodesRanchLasVegasHubPage() {
             Open this area on Google Search
           </GoogleSearchShareLink>
         </div>
-      </header>
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -135,7 +146,8 @@ export default function RhodesRanchLasVegasHubPage() {
         >
           How we help in Rhodes Ranch
         </h2>
-        <ul className="mt-5 list-disc space-y-3 pl-5 text-stone-700">
+        <div className="mt-5 grid gap-6 md:grid-cols-2 md:items-start">
+          <ul className="list-disc space-y-3 pl-5 text-stone-700">
           <li>
             <strong className="text-stone-800">Buyers:</strong> curate a short list, coordinate
             showings, and review disclosures and HOA materials with you—start with the{" "}
@@ -168,35 +180,46 @@ export default function RhodesRanchLasVegasHubPage() {
             to line up 89148 stops. Times change; confirm before you drive.
           </li>
         </ul>
+          <SectionFigure imageId="hero-buyers" caption="How we help in Rhodes Ranch" />
+        </div>
       </section>
 
-      {/* Seller Section — added after buyer-focused help section */}
-      <section className="mt-12 border-t pt-10">
-        <h3 className="text-2xl font-semibold mb-4">Thinking about selling in Rhodes Ranch?</h3>
-        <p className="mb-4 text-gray-700 leading-relaxed">
-          Rhodes Ranch sellers consistently get more than online estimates show — because guard-gated
-          communities, golf course views, and upgraded finishes don&apos;t show up in automated
-          valuations. Dr. Jan Duffy has been pricing and marketing homes in 89148 for over 35 years.
-          You get a strategy built for your specific section, not a generic market average.
-        </p>
-        <ul className="list-disc list-inside mb-6 text-gray-700 space-y-1">
-          <li>Accurate pricing based on current closed sales — not Zestimates</li>
-          <li>Marketing that reaches California equity buyers and local move-ups</li>
-          <li>Clear communication from list to close, no surprises</li>
-        </ul>
-        <div className="flex flex-col sm:flex-row gap-4">
-          <Link
-            href="/contact"
-            className="inline-block bg-black text-white px-6 py-3 text-sm font-medium hover:bg-gray-800 transition-colors"
-          >
-            Get your home&apos;s value
-          </Link>
-          <a
-            href="tel:+17026026878"
-            className="inline-block border border-black text-black px-6 py-3 text-sm font-medium hover:bg-gray-50 transition-colors"
-          >
-            Call (702) 602-6878
-          </a>
+      <section className="mt-12 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/30 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8">
+        <div className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h3 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">
+              Thinking about selling in Rhodes Ranch?
+            </h3>
+            <p className="mt-4 leading-relaxed text-stone-700">
+              Rhodes Ranch sellers consistently get more than online estimates show — because guard-gated
+              communities, golf course views, and upgraded finishes don&apos;t show up in automated
+              valuations. Dr. Jan Duffy has been pricing and marketing homes in 89148 for over 35 years.
+              You get a strategy built for your specific section, not a generic market average.
+            </p>
+            <ul className="mt-4 list-disc space-y-1 pl-5 text-stone-700">
+              <li>Accurate pricing based on current closed sales — not Zestimates</li>
+              <li>Marketing that reaches California equity buyers and local move-ups</li>
+              <li>Clear communication from list to close, no surprises</li>
+            </ul>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
+              >
+                Get your home&apos;s value
+              </Link>
+              <a
+                href={siteContact.phoneTelHref}
+                className="rounded-full border border-emerald-900/30 bg-white px-5 py-2.5 text-sm font-semibold text-emerald-950 hover:bg-emerald-50"
+              >
+                Call {siteContact.phoneDisplay}
+              </a>
+            </div>
+          </div>
+          <SectionFigure
+            imageId="section-selling-kitchen"
+            caption="Thinking about selling in Rhodes Ranch?"
+          />
         </div>
       </section>
 
@@ -252,6 +275,7 @@ export default function RhodesRanchLasVegasHubPage() {
         </div>
         <div className="space-y-4">
           <h2 className="text-lg font-semibold text-emerald-950">Map and Service Area</h2>
+          <SectionFigure imageId="hero-aerial-map" caption="Map and Service Area" />
           <MapEmbed
             title={`${siteContact.businessName} — office map (${siteContact.address.postalCode})`}
           />
