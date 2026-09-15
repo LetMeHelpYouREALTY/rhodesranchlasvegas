@@ -115,7 +115,7 @@ export default function BuyersProcessPage() {
               membership, or community rules—we help you request disclosures through normal channels.
             </p>
             </div>
-            <SectionFigure imageId="hero-living-room" caption="2. Search and shortlist" />
+            <SectionFigure imageId="section-search-shortlist" caption="2. Search and shortlist" />
           </section>
           <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
             <div>
@@ -125,7 +125,7 @@ export default function BuyersProcessPage() {
               rely on licensed inspectors and seller disclosures—not guesswork.
             </p>
             </div>
-            <SectionFigure imageId="hero-open-house" caption="3. Tours and due diligence" />
+            <SectionFigure imageId="section-due-diligence" caption="3. Tours and due diligence" />
           </section>
           <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
             <div>
@@ -135,7 +135,7 @@ export default function BuyersProcessPage() {
               Las Vegas purchase agreement concepts in plain language; your decisions drive terms.
             </p>
             </div>
-            <SectionFigure imageId="section-selling-kitchen" caption="4. Offer and contract" />
+            <SectionFigure imageId="section-offer-contract" caption="4. Offer and contract" />
           </section>
           <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
             <div>

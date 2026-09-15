@@ -99,7 +99,7 @@ export default function SearchPage() {
           Popular Rhodes Ranch Listing Paths
         </h2>
         <SectionFigure
-          imageId="hero-new-listing"
+          imageId="section-related-searches"
           caption="Popular Rhodes Ranch Listing Paths"
           className="mt-4 max-w-xl"
         />

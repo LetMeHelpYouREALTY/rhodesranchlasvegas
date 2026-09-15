@@ -124,6 +124,30 @@ export const SITE_IMAGES = {
     height: 864,
     heading: "Budget and pre-approval",
   },
+  "section-search-shortlist": {
+    alt: "Tablet home-search map and listing photos beside Rhodes Ranch golf-course homes in Las Vegas 89148",
+    width: 1152,
+    height: 864,
+    heading: "Search and shortlist",
+  },
+  "section-due-diligence": {
+    alt: "Home inspector checking HVAC at a southwest Las Vegas house during a Rhodes Ranch buyer tour",
+    width: 1152,
+    height: 864,
+    heading: "Tours and due diligence",
+  },
+  "section-offer-contract": {
+    alt: "Purchase agreement, earnest-money envelope, and house keys on a desk overlooking the Las Vegas desert",
+    width: 1152,
+    height: 864,
+    heading: "Offer and contract",
+  },
+  "section-related-searches": {
+    alt: "Three southwest Las Vegas home styles on a golf-community street at dusk near Rhodes Ranch 89148",
+    width: 1280,
+    height: 720,
+    heading: "Related Rhodes Ranch listing searches",
+  },
   "section-key-locations": {
     alt: "Office lobby map and keys for directions to 7272 S El Capitan Way, Las Vegas",
     width: 1152,

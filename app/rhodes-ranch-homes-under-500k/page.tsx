@@ -88,7 +88,6 @@ export default function RhodesRanchHomesUnder500kPage() {
         heading="Tour Rhodes Ranch homes in this price band"
         headingId="tour-under-500k-heading"
         body="Price and status move quickly in this band. Confirm the community name on each card, then call so we can book gated access and a daylight walk-through."
-        imageId="hero-starter-home"
       />
       <div className="mt-14">
         <FaqSection

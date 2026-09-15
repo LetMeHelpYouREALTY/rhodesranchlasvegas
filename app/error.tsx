@@ -31,6 +31,9 @@ export default function Error({
         <span className="block text-xs text-stone-500 sm:inline sm:ml-2">
           · {siteContact.fullAddressLine}
         </span>
+        <span className="mt-1 block text-xs text-stone-500">
+          {siteContact.hoursSummaryLine}
+        </span>
       </p>
       <button
         type="button"
