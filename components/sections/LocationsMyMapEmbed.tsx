@@ -1,3 +1,4 @@
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { publicEnv } from "@/lib/env";
 import { siteContact } from "@/lib/site-contact";
 
@@ -45,6 +46,11 @@ export function LocationsMyMapEmbed({
         >
           Key locations
         </TitleTag>
+        <SectionFigure
+          imageId="section-key-locations"
+          caption="Key locations"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 max-w-2xl text-sm text-stone-600">
           We work from the office below and meet clients across {siteContact.serviceAreaDescription}.
           Call or text to confirm the best place to connect for your appointment. You can also use
@@ -65,8 +71,13 @@ export function LocationsMyMapEmbed({
         id={headingId}
         className="font-display text-xl font-semibold text-emerald-950 sm:text-2xl"
       >
-        Key locations
-      </TitleTag>
+          Key locations
+        </TitleTag>
+      <SectionFigure
+        imageId="section-key-locations"
+        caption="Key locations"
+        className="mt-4 max-w-xl"
+      />
       <p className="mt-2 max-w-2xl text-sm text-stone-600">
         Custom Google Map with current open house tour stops and other pins across{" "}
         {siteContact.serviceAreaDescription}. Confirm each showing time and access (including

@@ -136,6 +136,7 @@ export default function SearchPage() {
           titleLevel={3}
           heading="Rhodes Ranch Search FAQ"
           items={rhodesMlsFaq.slice(0, 4)}
+          imageId="section-listings-grid"
         />
       </div>
 

@@ -81,6 +81,11 @@ export default function BuyersProcessPage() {
         >
           Key phases: from pre-approval to keys
         </h2>
+        <SectionFigure
+          imageId="section-preapproval"
+          caption="Key phases: from pre-approval to keys"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
           Timelines and details vary by lender, property, and contract—this is a general outline.
         </p>
@@ -93,7 +98,7 @@ export default function BuyersProcessPage() {
               helps you act quickly when the right Rhodes Ranch Las Vegas home lists.
             </p>
             </div>
-            <SectionFigure imageId="hero-consultation" caption="1. Budget and pre-approval" />
+            <SectionFigure imageId="section-preapproval" caption="1. Budget and pre-approval" />
           </section>
           <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
             <div>
@@ -148,6 +153,11 @@ export default function BuyersProcessPage() {
 
       <section className="mt-14 rounded-2xl border border-emerald-900/15 bg-emerald-50/50 p-6">
         <h3 className="text-lg font-semibold text-emerald-950">Work with our buyer specialist</h3>
+        <SectionFigure
+          imageId="hero-consultation"
+          caption="Work with our buyer specialist"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-slate-700">
           {siteContact.secondaryContactName}, {siteContact.secondaryContactTitle}, supports buyers
           touring and purchasing in {siteContact.serviceAreaDescription}.

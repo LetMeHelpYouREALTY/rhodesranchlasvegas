@@ -191,10 +191,10 @@ export default function RhodesRanchLasVegasHubPage() {
               Thinking about selling in Rhodes Ranch?
             </h3>
             <p className="mt-4 leading-relaxed text-stone-700">
-              Rhodes Ranch sellers consistently get more than online estimates show — because guard-gated
-              communities, golf course views, and upgraded finishes don&apos;t show up in automated
-              valuations. Dr. Jan Duffy has been pricing and marketing homes in 89148 for over 35 years.
-              You get a strategy built for your specific section, not a generic market average.
+              Automated estimates often miss guard-gated access, golf-course views, and upgrades.
+              Pricing conversations start from current closed sales in your section—not a generic
+              valley average. {siteContact.agentName} prices and markets 89148 homes with{" "}
+              {siteContact.legalBrokerage}.
             </p>
             <ul className="mt-4 list-disc space-y-1 pl-5 text-stone-700">
               <li>Accurate pricing based on current closed sales — not Zestimates</li>
@@ -306,6 +306,7 @@ export default function RhodesRanchLasVegasHubPage() {
           titleLevel={3}
           heading="Rhodes Ranch Las Vegas FAQ"
           items={rhodesRanchFaq}
+          imageId="hero-homes"
         />
       </div>
     </main>

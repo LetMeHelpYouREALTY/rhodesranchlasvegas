@@ -214,6 +214,11 @@ export default function ContactPage() {
         >
           Office, maps, and key locations
         </h3>
+        <SectionFigure
+          imageId="section-key-locations"
+          caption="Office, maps, and key locations"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-stone-700">
           For the full page with the office map, open house tour map, hours, and
           turn-by-turn directions, open{" "}
@@ -235,6 +240,7 @@ export default function ContactPage() {
           titleLevel={3}
           heading="Questions about scheduling and contact"
           items={contactFaq}
+          imageId="hero-consultation"
         />
       </div>
     </main>

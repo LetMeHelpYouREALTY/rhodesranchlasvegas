@@ -144,6 +144,7 @@ export default function RhodesRanchMlsListingsPage() {
           titleLevel={3}
           heading="Rhodes Ranch MLS Listings FAQ"
           items={rhodesMlsFaq}
+          imageId="section-listings-grid"
         />
       </div>
 

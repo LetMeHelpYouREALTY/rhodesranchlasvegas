@@ -165,6 +165,7 @@ export default function BuyersPage() {
           titleLevel={3}
           heading="Buyer FAQ"
           items={buyerFaq}
+          imageId="hero-buyers"
         />
       </div>
 

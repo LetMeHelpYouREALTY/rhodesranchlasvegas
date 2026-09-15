@@ -243,6 +243,7 @@ export default function HomePage() {
           titleLevel={3}
           heading="Rhodes Ranch FAQ"
           items={rhodesRanchFaq}
+          imageId="hero-homes"
         />
       </div>
     </main>

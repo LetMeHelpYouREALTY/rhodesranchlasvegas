@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { cn } from "@/lib/utils";
 
 const EXPLORE_LINKS: { href: string; label: string }[] = [
@@ -106,6 +107,11 @@ export function LocalExploreNav({ currentPath, className }: LocalExploreNavProps
       <h3 className="font-display text-xl font-semibold tracking-tight text-emerald-950 sm:text-[1.35rem]">
         More local real estate: guides, search, and open houses
       </h3>
+      <SectionFigure
+        imageId="section-landmarks"
+        caption="More local real estate: guides, search, and open houses"
+        className="mt-4 max-w-xl"
+      />
       <p className="mt-2 text-sm text-stone-600">
         Hyperlocal topics for the same NAP and service area as our Google Business Profile—helpful
         for search, maps, and AI overviews that use clear page titles and internal links.
