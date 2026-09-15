@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { PageHero } from "@/components/media/PageHero";
 import { NapBlock } from "@/components/sections/NapBlock";
 
 export const metadata: Metadata = {
@@ -9,12 +10,14 @@ export const metadata: Metadata = {
 
 export default function NotFound() {
   return (
-    <main className="mx-auto flex max-w-lg flex-col items-center px-4 py-24 text-center">
-      <p className="text-sm font-semibold uppercase tracking-wide text-emerald-900">404</p>
-      <h1 className="mt-2 text-2xl font-bold text-emerald-950">Page not found</h1>
-      <p className="mt-3 text-sm text-slate-700">
-        The page you requested is not available. Start from the home page or contact Dr. Jan Duffy.
-      </p>
+    <main className="mx-auto max-w-6xl px-4 py-16 sm:px-6">
+      <PageHero imageId="hero-homes" className="text-left">
+        <p className="text-sm font-semibold uppercase tracking-wide text-emerald-900">404</p>
+        <h1 className="font-display mt-2 text-4xl font-semibold text-emerald-950">Page not found</h1>
+        <p className="mt-3 text-sm text-slate-700">
+          The page you requested is not available. Start from the home page or contact Dr. Jan Duffy.
+        </p>
+      </PageHero>
       <div className="mt-8 w-full max-w-md text-left">
         <NapBlock />
       </div>

@@ -1,10 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { metaAddressOnly, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { siteContact } from "@/lib/site-contact";
@@ -29,7 +33,7 @@ const highlights = [
   {
     name: "Wet‘n’Wild Las Vegas",
     href: "https://www.wetnwildlasvegas.com",
-    body: "Regional water park—fun for families a short drive from southwest Las Vegas.",
+    body: "Regional water park a short drive from southwest Las Vegas.",
   },
   {
     name: "Cowabunga Canyon Waterpark",
@@ -69,7 +73,13 @@ export default function RhodesRanchLifestylePage() {
           description: `Editorial community overview for ${siteContact.serviceAreaDescription}. Verify hours and fees with each venue.`,
         })}
       />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Rhodes Ranch lifestyle", path: "/rhodes-ranch-lifestyle" },
+        ]}
+      />
+      <PageHero imageId="hero-golf">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Community guide · {siteContact.address.postalCode} · Not affiliated with named venues
         </p>
@@ -92,7 +102,8 @@ export default function RhodesRanchLifestylePage() {
           <GoogleSearchShareLink className="font-medium text-emerald-900 underline-offset-2 hover:underline" />
           .
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -104,6 +115,7 @@ export default function RhodesRanchLifestylePage() {
           <h2 id="overview-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Rhodes Ranch at a Glance
           </h2>
+          <SectionFigure imageId="hero-homes" caption="Rhodes Ranch at a Glance" className="mt-4" />
           <p className="mt-4 leading-relaxed">
             Rhodes Ranch is a guard-gated, roughly 1,330-acre master-planned community in Spring
             Valley—about 15 minutes southwest of the Las Vegas Strip. Development began in 1997,
@@ -128,6 +140,11 @@ export default function RhodesRanchLifestylePage() {
           <h2 id="golf-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Living in Rhodes Ranch: Golf and the Club
           </h2>
+          <SectionFigure
+            imageId="hero-golf"
+            caption="Living in Rhodes Ranch: Golf and the Club"
+            className="mt-4"
+          />
           <p className="mt-4 leading-relaxed">
             Rhodes Ranch is built around the 18-hole{" "}
             <a
@@ -151,6 +168,11 @@ export default function RhodesRanchLifestylePage() {
           <h2 id="rec-center-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Recreation Center and Indoor Amenities
           </h2>
+          <SectionFigure
+            imageId="section-rec"
+            caption="Recreation Center and Indoor Amenities"
+            className="mt-4"
+          />
           <p className="mt-4 leading-relaxed">
             Beyond golf, Rhodes Ranch offers a large recreation center—on the order of 35,000 square
             feet—with fitness and social spaces. Typical uses include:
@@ -173,6 +195,11 @@ export default function RhodesRanchLifestylePage() {
           <h3 id="outdoor-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Outdoor amenities and nearby open space
           </h3>
+          <SectionFigure
+            imageId="section-trails"
+            caption="Outdoor amenities and nearby open space"
+            className="mt-4"
+          />
           <p className="mt-4 leading-relaxed">
             Inside the gates, residents also use outdoor amenities such as basketball courts,
             playgrounds, tennis courts, and extensive walking and biking trails. The community
@@ -207,8 +234,13 @@ export default function RhodesRanchLifestylePage() {
           <h3 id="lifestyle-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Resort-style living and city access
           </h3>
+          <SectionFigure
+            imageId="hero-pool"
+            caption="Resort-style living and city access"
+            className="mt-4"
+          />
           <p className="mt-4 leading-relaxed">
-            Many families choose Rhodes Ranch for a resort-style feel—golf, recreation, and
+            Many buyers choose Rhodes Ranch for a resort-style feel—golf, recreation, and
             trails—while staying outside the densest parts of the urban core. When you want more
             retail and dining,{" "}
             <strong className="font-semibold text-stone-800">Downtown Summerlin</strong> is roughly
@@ -223,6 +255,11 @@ export default function RhodesRanchLifestylePage() {
           <h3 id="market-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Homes, pricing, and HOA context
           </h3>
+          <SectionFigure
+            imageId="hero-living-room"
+            caption="Homes, pricing, and HOA context"
+            className="mt-4"
+          />
           <p className="mt-4 leading-relaxed">
             Inventory in Rhodes Ranch spans attached products through large single-family homes;
             values differ by neighborhood, condition, lot size, and timing. Older homes on larger lots
@@ -251,6 +288,11 @@ export default function RhodesRanchLifestylePage() {
           <h3 id="cta-heading" className="font-display text-xl font-semibold text-emerald-950">
             Want to go deeper?
           </h3>
+          <SectionFigure
+            imageId="hero-consultation"
+            caption="Want to go deeper?"
+            className="mt-4 max-w-xl"
+          />
           <p className="mt-3 leading-relaxed">
             For a no-obligation conversation about buying or selling in Rhodes Ranch, call{" "}
             <a
@@ -285,6 +327,11 @@ export default function RhodesRanchLifestylePage() {
         >
           Recreation and landmarks (editorial)
         </h3>
+        <SectionFigure
+          imageId="section-landmarks"
+          caption="Recreation and landmarks (editorial)"
+          className="mt-4 max-w-xl"
+        />
         <p className="max-w-3xl text-sm leading-relaxed text-stone-600">
           Quick links to official or authoritative sites—same list as our short &ldquo;nearby&rdquo;
           reference. Not sponsored.
@@ -313,6 +360,11 @@ export default function RhodesRanchLifestylePage() {
 
       <section className="mt-12 rounded-2xl border border-dashed border-emerald-900/30 bg-emerald-50/40 p-6">
         <h3 className="font-display text-xl font-semibold text-emerald-950">Work with a local REALTOR®</h3>
+        <SectionFigure
+          imageId="section-private-tour"
+          caption="Work with a local REALTOR®"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-stone-700">
           Return to the{" "}
           <Link href="/" className="font-medium text-emerald-900 underline-offset-2 hover:underline">

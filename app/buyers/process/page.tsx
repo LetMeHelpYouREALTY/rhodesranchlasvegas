@@ -1,10 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { BuyerCtaStrip } from "@/components/buyers/BuyerCtaStrip";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { defaultMetadata, metaAddressOnly, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { siteContact } from "@/lib/site-contact";
@@ -37,7 +41,14 @@ export default function BuyersProcessPage() {
           description: `Educational overview for Rhodes Ranch buyers: search through closing with ${siteContact.secondaryContactName}. Not legal or tax advice.`,
         })}
       />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Buyers", path: "/buyers" },
+          { name: "Buying process", path: "/buyers/process" },
+        ]}
+      />
+      <PageHero imageId="section-keys-closing">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Buyers · Process overview
         </p>
@@ -52,7 +63,8 @@ export default function BuyersProcessPage() {
         <div className="mt-6">
           <BuyerCtaStrip />
         </div>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -60,7 +72,7 @@ export default function BuyersProcessPage() {
       />
 
       <section
-        className="mt-12 max-w-3xl text-slate-700"
+        className="mt-12 text-slate-700"
         aria-labelledby="key-phases-heading"
       >
         <h2
@@ -69,18 +81,27 @@ export default function BuyersProcessPage() {
         >
           Key phases: from pre-approval to keys
         </h2>
+        <SectionFigure
+          imageId="section-preapproval"
+          caption="Key phases: from pre-approval to keys"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-slate-600">
           Timelines and details vary by lender, property, and contract—this is a general outline.
         </p>
         <div className="mt-8 space-y-10">
-          <section>
+          <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
+            <div>
             <h3 className="text-xl font-semibold text-emerald-950">1. Budget and pre-approval</h3>
             <p className="mt-3 leading-relaxed">
               Meet with a mortgage loan officer for pre-approval. That sets your price range and
               helps you act quickly when the right Rhodes Ranch Las Vegas home lists.
             </p>
+            </div>
+            <SectionFigure imageId="section-preapproval" caption="1. Budget and pre-approval" />
           </section>
-          <section>
+          <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
+            <div>
             <h3 className="text-xl font-semibold text-emerald-950">2. Search and shortlist</h3>
             <p className="mt-3 leading-relaxed">
               Use the{" "}
@@ -93,34 +114,50 @@ export default function BuyersProcessPage() {
               to track new inventory. Save favorites and note questions about HOA documents, golf
               membership, or community rules—we help you request disclosures through normal channels.
             </p>
+            </div>
+            <SectionFigure imageId="hero-living-room" caption="2. Search and shortlist" />
           </section>
-          <section>
+          <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
+            <div>
             <h3 className="text-xl font-semibold text-emerald-950">3. Tours and due diligence</h3>
             <p className="mt-3 leading-relaxed">
               We schedule showings that comply with guard-gated access. For condition and systems,
               rely on licensed inspectors and seller disclosures—not guesswork.
             </p>
+            </div>
+            <SectionFigure imageId="hero-open-house" caption="3. Tours and due diligence" />
           </section>
-          <section>
+          <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
+            <div>
             <h3 className="text-xl font-semibold text-emerald-950">4. Offer and contract</h3>
             <p className="mt-3 leading-relaxed">
               Offers include price, earnest money, contingencies, and timelines. We explain common
               Las Vegas purchase agreement concepts in plain language; your decisions drive terms.
             </p>
+            </div>
+            <SectionFigure imageId="section-selling-kitchen" caption="4. Offer and contract" />
           </section>
-          <section>
+          <section className="grid gap-4 sm:grid-cols-2 sm:items-center">
+            <div>
             <h3 className="text-xl font-semibold text-emerald-950">5. Escrow and closing</h3>
             <p className="mt-3 leading-relaxed">
               Title and escrow coordinate signatures, payoffs, and recording. Your lender funds the
               loan when conditions are cleared. Closing day ends with keys when the transaction is
               funded and recorded—your escrow officer confirms details.
             </p>
+            </div>
+            <SectionFigure imageId="section-keys-closing" caption="5. Escrow and closing" />
           </section>
         </div>
       </section>
 
       <section className="mt-14 rounded-2xl border border-emerald-900/15 bg-emerald-50/50 p-6">
         <h3 className="text-lg font-semibold text-emerald-950">Work with our buyer specialist</h3>
+        <SectionFigure
+          imageId="hero-consultation"
+          caption="Work with our buyer specialist"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 text-sm leading-relaxed text-slate-700">
           {siteContact.secondaryContactName}, {siteContact.secondaryContactTitle}, supports buyers
           touring and purchasing in {siteContact.serviceAreaDescription}.

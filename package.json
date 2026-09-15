@@ -12,7 +12,8 @@
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
     "verify:h1": "node scripts/verify-one-h1.mjs",
-    "verify:h2": "node scripts/verify-max-h2.mjs"
+    "verify:h2": "node scripts/verify-max-h2.mjs",
+    "images:upload-cloudflare": "node scripts/upload-cloudflare-images.mjs"
   },
   "browserslist": {
     "production": [

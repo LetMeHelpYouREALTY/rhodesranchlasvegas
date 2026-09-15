@@ -17,9 +17,9 @@ export const rhodesRanchFaq: FaqItem[] = [
       "Drive times are often in the 15- to 25-minute range depending on traffic patterns and where you start on the Strip.",
   },
   {
-    question: "How is the neighborhood in Rhodes Ranch, Las Vegas, NV?",
+    question: "What amenities and layout does Rhodes Ranch include?",
     answer:
-      "The neighborhood is known for guard-gated access, a central golf course, and resort-style amenities. Home style, lot size, HOA rules, and commute convenience can vary by section, so touring specific streets is the best way to evaluate fit.",
+      "Rhodes Ranch is a guard-gated, golf-centered community with recreation facilities. Home style, lot size, HOA rules, and commute times can vary by section, so touring specific streets is the best way to evaluate fit.",
   },
   {
     question: "Is Rhodes Ranch in Las Vegas bankrupt?",

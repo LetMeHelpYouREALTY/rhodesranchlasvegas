@@ -1,11 +1,16 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { OpenHousesMapSection } from "@/components/sections/OpenHousesMapSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { defaultMetadata, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { WEEKDAY_SLUGS, weekdayMeta } from "@/lib/open-houses-weekdays";
@@ -38,7 +43,13 @@ export default function OpenHousesHubPage() {
           description: `Weekend map, MLS open house search, and day-by-day planning for ${siteContact.serviceAreaDescription}.`,
         })}
       />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Open houses", path: "/open-houses" },
+        ]}
+      />
+      <PageHero imageId="hero-open-house">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Open houses · {siteContact.address.postalCode}
         </p>
@@ -54,7 +65,8 @@ export default function OpenHousesHubPage() {
           <GoogleSearchShareLink className="font-medium text-emerald-900 underline-offset-2 hover:underline" />{" "}
           for how Google surfaces the community name.
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -77,6 +89,11 @@ export default function OpenHousesHubPage() {
         >
           Open houses by day of the week
         </h2>
+        <SectionFigure
+          imageId="section-weekday-tours"
+          caption="Open houses by day of the week"
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-3 max-w-2xl text-sm text-stone-600">
           Choose a day for day-specific guidance. Each page includes the same broker open house
           search so you can match calendar planning with live inventory.
@@ -99,6 +116,13 @@ export default function OpenHousesHubPage() {
           ))}
         </ul>
       </section>
+
+      <ListingTourSection
+        heading="Need a private showing instead of an open house?"
+        headingId="private-showing-open-houses-heading"
+        body="If a listing is not holding open hours that day, we still book gated access. Call, text, or schedule so Chance Fuller can map a route that fits 89148."
+        imageId="section-private-tour"
+      />
 
       <LocalExploreNav currentPath="/open-houses" className="mt-14" />
 

@@ -1,11 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { FaqSection } from "@/components/sections/FaqSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { homesUnder500kFaq } from "@/lib/faq-listing-segments";
 import { metaAddressOnly, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { siteContact } from "@/lib/site-contact";
 
@@ -37,8 +43,15 @@ export default function RhodesRanchHomesUnder500kPage() {
           description: "Budget-focused Rhodes Ranch listings page for homes under $500k in Las Vegas 89148.",
         })}
       />
+      <JsonLd data={faqPageJsonLd(homesUnder500kFaq)} />
 
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Rhodes Ranch homes under $500k", path: canonicalPath },
+        ]}
+      />
+      <PageHero imageId="hero-starter-home">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Price-focused search · Rhodes Ranch
         </p>
@@ -59,8 +72,9 @@ export default function RhodesRanchHomesUnder500kPage() {
           </Link>
           .
         </p>
-        <LastUpdatedNote reviewedMonthYear="April 2026" className="mt-4" />
-      </header>
+        <LastUpdatedNote reviewedMonthYear="September 2026" className="mt-4" />
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -70,6 +84,21 @@ export default function RhodesRanchHomesUnder500kPage() {
         listingIntro="Active homes near the under-$500k target, plus map filters to compare alternatives in 89148."
         listingMountStrategy="immediate"
       />
+      <ListingTourSection
+        heading="Tour Rhodes Ranch homes in this price band"
+        headingId="tour-under-500k-heading"
+        body="Price and status move quickly in this band. Confirm the community name on each card, then call so we can book gated access and a daylight walk-through."
+        imageId="hero-starter-home"
+      />
+      <div className="mt-14">
+        <FaqSection
+          id="under-500k-faq"
+          titleLevel={3}
+          heading="Homes under $500k FAQ"
+          items={homesUnder500kFaq}
+          imageId="hero-starter-home"
+        />
+      </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />
       <div className="mt-14">
         <NapBlock />

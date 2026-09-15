@@ -1,10 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { aeoFaq } from "@/lib/faq-aeo";
 import { defaultMetadata, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
@@ -38,7 +41,13 @@ export default function QuestionsPage() {
         })}
       />
       <JsonLd data={faqPageJsonLd(aeoFaq)} />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Q&A", path: "/questions" },
+        ]}
+      />
+      <PageHero imageId="hero-consultation">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Q&amp;A · {siteContact.address.postalCode}
         </p>
@@ -55,7 +64,8 @@ export default function QuestionsPage() {
           results for the community alongside your research, open{" "}
           <GoogleSearchShareLink />.
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <div className="mt-14">
         <FaqSection
@@ -63,6 +73,7 @@ export default function QuestionsPage() {
           titleLevel={2}
           heading="Questions and answers"
           items={aeoFaq}
+          imageId="hero-consultation"
         />
       </div>
 

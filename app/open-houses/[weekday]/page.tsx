@@ -1,12 +1,18 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { NapBlock } from "@/components/sections/NapBlock";
+import { FaqSection } from "@/components/sections/FaqSection";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { defaultMetadata, metaDescriptionTail, pageSocialMetadata } from "@/lib/metadata";
-import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { weekdayOpenHouseFaq } from "@/lib/faq-listing-segments";
 import {
   type WeekdaySlug,
   WEEKDAY_SLUGS,
@@ -63,25 +69,16 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
           description: intro.length > 300 ? `${intro.slice(0, 297).trim()}…` : intro,
         })}
       />
-      <nav className="text-sm text-stone-600" aria-label="Breadcrumb">
-        <ol className="flex flex-wrap gap-x-2 gap-y-1">
-          <li>
-            <Link href="/" className="text-emerald-900 hover:underline">
-              Home
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
-          <li>
-            <Link href="/open-houses" className="text-emerald-900 hover:underline">
-              Open houses
-            </Link>
-          </li>
-          <li aria-hidden="true">/</li>
-          <li className="font-medium text-stone-800">{label}</li>
-        </ol>
-      </nav>
+      <JsonLd data={faqPageJsonLd(weekdayOpenHouseFaq)} />
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Open houses", path: "/open-houses" },
+          { name: `${label} open houses`, path: `/open-houses/${raw}` },
+        ]}
+      />
 
-      <header className="mt-6 max-w-3xl">
+      <PageHero imageId="hero-open-house">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           {label} · {siteContact.address.postalCode}
         </p>
@@ -98,7 +95,8 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
             Schedule a private tour
           </Link>
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -108,6 +106,23 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
         headingId={`open-house-${raw}-listings-heading`}
         listingIntro={`Broker open house search for ${label}—confirm date and time on each listing card, then use the hub map when you plan multiple stops across ${siteContact.address.postalCode}.`}
       />
+
+      <ListingTourSection
+        heading={`Plan ${label} tours in Rhodes Ranch and 89148`}
+        headingId={`tour-${raw}-heading`}
+        body="Confirm hours on each MLS card, then call if a gated address needs RSVP. The weekend map on the open-houses hub is the fastest way to sequence stops."
+        imageId="section-weekday-tours"
+      />
+
+      <div className="mt-14">
+        <FaqSection
+          id={`open-house-${raw}-faq`}
+          titleLevel={3}
+          heading={`${label} open house FAQ`}
+          items={weekdayOpenHouseFaq}
+          imageId="hero-open-house"
+        />
+      </div>
 
       <LocalExploreNav currentPath={`/open-houses/${raw}`} className="mt-14" />
 

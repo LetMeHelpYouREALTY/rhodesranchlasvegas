@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
+import { siteImageAbsoluteUrl } from "@/lib/cloudflare-images";
 import { publicEnv } from "@/lib/env";
+import { heroImageIdForPath, SITE_IMAGES, type SiteImageId } from "@/lib/site-images";
 import { siteContact } from "@/lib/site-contact";
 
 const baseUrl = new URL(siteContact.siteUrl);
@@ -67,7 +69,7 @@ export const defaultMetadata: Metadata = {
     siteName: siteContact.businessName,
     images: [
       {
-        url: "/og-default.png",
+        url: "/og-default.jpg",
         width: 1200,
         height: 630,
         alt: `${siteContact.businessName} — ${siteContact.agentName}, Rhodes Ranch and Las Vegas 89148`,
@@ -78,7 +80,7 @@ export const defaultMetadata: Metadata = {
     card: "summary_large_image",
     title: `${siteContact.businessName} | REALTOR®`,
     description: `Rhodes Ranch and Las Vegas 89148 real estate with ${siteContact.agentName}. ${metaAddressOnly}`,
-    images: ["/og-default.png"],
+    images: ["/og-default.jpg"],
   },
 };
 
@@ -114,16 +116,26 @@ export function twitterCardForPage(
  */
 export function pageSocialMetadata(
   canonicalPath: string,
-  opts: { title: string; description: string },
+  opts: { title: string; description: string; imageId?: SiteImageId },
 ): Pick<Metadata, "openGraph" | "twitter"> {
+  const imageId = opts.imageId ?? heroImageIdForPath(canonicalPath);
+  const meta = SITE_IMAGES[imageId];
+  const image = {
+    url: siteImageAbsoluteUrl(imageId),
+    width: meta.width,
+    height: meta.height,
+    alt: meta.alt,
+  };
   return {
     openGraph: openGraphForCanonicalPath(canonicalPath, {
       title: opts.title,
       description: opts.description,
+      images: [image],
     }),
     twitter: twitterCardForPage({
       title: opts.title,
       description: opts.description,
+      images: [image.url],
     }),
   };
 }

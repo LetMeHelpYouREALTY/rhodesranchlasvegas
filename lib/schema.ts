@@ -1,5 +1,7 @@
+import { siteImageAbsoluteUrl } from "@/lib/cloudflare-images";
 import { publicEnv } from "@/lib/env";
-import { siteContact } from "@/lib/site-contact";
+import { heroImageIdForPath, SITE_IMAGES, type SiteImageId } from "@/lib/site-images";
+import { googleMapsProfileHref, siteContact } from "@/lib/site-contact";
 
 const base = siteContact.siteUrl.replace(/\/$/, "");
 
@@ -7,6 +9,20 @@ const websiteDescription =
   publicEnv.gbpBusinessDescription.length > 500
     ? `${publicEnv.gbpBusinessDescription.slice(0, 497).trim()}…`
     : publicEnv.gbpBusinessDescription;
+
+function imageObject(id: SiteImageId): Record<string, unknown> {
+  const meta = SITE_IMAGES[id];
+  const url = siteImageAbsoluteUrl(id);
+  return {
+    "@type": "ImageObject",
+    url,
+    contentUrl: url,
+    width: meta.width,
+    height: meta.height,
+    caption: meta.heading,
+    description: meta.alt,
+  };
+}
 
 /** WebSite graph node — pairs with RealEstateAgent for Search Console + GBP entity consistency. */
 export function websiteJsonLd(): Record<string, unknown> {
@@ -19,7 +35,7 @@ export function websiteJsonLd(): Record<string, unknown> {
     description: websiteDescription,
     inLanguage: "en-US",
     publisher: { "@id": `${base}/#agent` },
-    image: `${base}/og-default.png`,
+    image: imageObject("og-share"),
   };
 }
 
@@ -35,14 +51,22 @@ export function realEstateAgentJsonLd(): Record<string, unknown> {
 
   const node: Record<string, unknown> = {
     "@context": "https://schema.org",
-    "@type": "RealEstateAgent",
+    "@type": ["RealEstateAgent", "LocalBusiness"],
     "@id": `${base}/#agent`,
     name: siteContact.agentName,
-    image: `${base}/og-default.png`,
-    logo: {
-      "@type": "ImageObject",
-      url: `${base}/og-default.png`,
-    },
+    image: [
+      siteImageAbsoluteUrl("hero-office"),
+      siteImageAbsoluteUrl("hero-homes"),
+      siteImageAbsoluteUrl("hero-golf"),
+    ],
+    logo: imageObject("hero-office"),
+    photo: [
+      imageObject("hero-office"),
+      imageObject("hero-homes"),
+      imageObject("hero-golf"),
+      imageObject("hero-pool"),
+    ],
+    hasMap: googleMapsProfileHref(),
     brand: {
       "@type": "Brand",
       name: siteContact.businessName,
@@ -124,9 +148,11 @@ export function webPageJsonLd(opts: {
   path: string;
   name: string;
   description: string;
+  imageId?: SiteImageId;
 }): Record<string, unknown> {
   const p = opts.path.startsWith("/") ? opts.path : `/${opts.path}`;
   const pageUrl = `${base}${p}`;
+  const imageId = opts.imageId ?? heroImageIdForPath(p);
 
   return {
     "@context": "https://schema.org",
@@ -137,10 +163,8 @@ export function webPageJsonLd(opts: {
     description: opts.description,
     isPartOf: { "@id": `${base}/#website` },
     about: { "@id": `${base}/#agent` },
-    primaryImageOfPage: {
-      "@type": "ImageObject",
-      url: `${base}/og-default.png`,
-    },
+    primaryImageOfPage: imageObject(imageId),
+    image: imageObject(imageId),
     inLanguage: "en-US",
   };
 }

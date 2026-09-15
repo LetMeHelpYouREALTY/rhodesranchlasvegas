@@ -1,9 +1,13 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PageBreadcrumbs } from "@/components/seo/PageBreadcrumbs";
 import { metaAddressOnly, pageSocialMetadata } from "@/lib/metadata";
 import { breadcrumbListJsonLd, webPageJsonLd } from "@/lib/schema";
 import { publicEnv } from "@/lib/env";
@@ -37,7 +41,13 @@ export default function MapPage() {
           description: `Community orientation map for ${siteContact.address.postalCode}, Rhodes Ranch, and Spring Valley. ${metaAddressOnly}`,
         })}
       />
-      <header className="max-w-3xl">
+      <PageBreadcrumbs
+        items={[
+          { name: "Home", path: "/" },
+          { name: "Area map", path: "/map" },
+        ]}
+      />
+      <PageHero imageId="hero-aerial-map">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Area guide · {siteContact.address.postalCode}
         </p>
@@ -58,12 +68,31 @@ export default function MapPage() {
           <GoogleSearchShareLink className="font-medium text-emerald-900 underline-offset-2 hover:underline" />
           .
         </p>
-      </header>
+        <GbpActionBar />
+      </PageHero>
 
       <section
         className="mt-10 overflow-hidden rounded-2xl border border-emerald-900/15 bg-white shadow-sm"
-        aria-label="Rhodes Ranch and Spring Valley interactive map"
+        aria-labelledby="area-map-heading"
       >
+        <div className="grid gap-6 p-6 sm:p-8 lg:grid-cols-2 lg:items-center">
+          <div>
+            <h2
+              id="area-map-heading"
+              className="font-display text-2xl font-semibold tracking-tight text-emerald-950"
+            >
+              Interactive Google Map of Rhodes Ranch and Spring Valley
+            </h2>
+            <p className="mt-3 text-sm leading-relaxed text-stone-600">
+              Use the map to orient to {siteContact.address.postalCode}, then call{" "}
+              {siteContact.phoneDisplay} for a tour that starts from {siteContact.fullAddressLine}.
+            </p>
+          </div>
+          <SectionFigure
+            imageId="hero-aerial-map"
+            caption="Interactive Google Map of Rhodes Ranch and Spring Valley"
+          />
+        </div>
         <div className="relative aspect-4/3 w-full min-h-[280px] sm:min-h-[360px] lg:min-h-[420px]">
           <iframe
             title="Map of Rhodes Ranch, Spring Valley, Nevada"

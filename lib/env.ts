@@ -486,4 +486,23 @@ export const publicEnv = {
     }
     return out;
   })(),
+
+  /**
+   * Cloudflare Images account hash (imagedelivery.net/<hash>/<id>/<variant>).
+   * Primary CDN for heading photos; git copies in public/images/ remain the backup.
+   * Do not orange-cloud the Vercel hostname — this uses imagedelivery.net instead.
+   */
+  cloudflareImagesAccountHash: (() => {
+    const raw = envOptional("NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH")?.trim();
+    if (!raw) return undefined;
+    if (!/^[A-Za-z0-9_-]{8,128}$/.test(raw)) return undefined;
+    return raw;
+  })(),
+
+  /** Named variant on Cloudflare Images (default `public`). */
+  cloudflareImagesVariant: (() => {
+    const raw = env("NEXT_PUBLIC_CLOUDFLARE_IMAGES_VARIANT", "public");
+    if (!/^[A-Za-z0-9_-]{1,64}$/.test(raw)) return "public";
+    return raw;
+  })(),
 } as const;

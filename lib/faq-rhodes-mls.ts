@@ -32,8 +32,8 @@ export const rhodesMlsFaq: FaqItem[] = [
     answer: `Call ${siteContact.phoneDisplay} or use ${siteRoot}/contact#schedule. We coordinate showing windows and access steps for gated entries where required.`,
   },
   {
-    question: "How is the neighborhood in Rhodes Ranch, Las Vegas, NV?",
+    question: "What amenities and layout does Rhodes Ranch include?",
     answer:
-      "Rhodes Ranch is known for guard-gated access, a golf-centered layout, and resort-style amenities. Home style, lot size, and HOA expectations vary by section, so a focused tour is the best way to evaluate fit.",
+      "Rhodes Ranch is a guard-gated, golf-centered community with recreation facilities. Home style, lot size, and HOA rules vary by section, so a focused tour is the best way to evaluate fit.",
   },
 ];

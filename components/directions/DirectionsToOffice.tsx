@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
+import { SiteImage } from "@/components/media/SiteImage";
 import { publicEnv } from "@/lib/env";
 import {
   googleMapsDirectionsWebUrl,
@@ -195,6 +196,12 @@ export function DirectionsToOffice() {
       >
         Plan your visit — directions
       </h3>
+      <SiteImage
+        id="section-key-locations"
+        sizes="(max-width: 768px) 100vw, 480px"
+        caption="Plan your visit — directions"
+        className="mt-4 max-w-xl"
+      />
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-stone-600">
         {apiKey
           ? "Enter where you are starting from and pick a travel mode. Estimated time and distance appear from Google’s Directions service when a route is available."

@@ -1,107 +1,71 @@
 import type { MetadataRoute } from "next";
+import { siteImageAbsoluteUrl } from "@/lib/cloudflare-images";
 import { WEEKDAY_SLUGS } from "@/lib/open-houses-weekdays";
+import { heroImageIdForPath } from "@/lib/site-images";
 import { siteContact } from "@/lib/site-contact";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+function pageEntry(
+  path: string,
+  rest: Omit<MetadataRoute.Sitemap[number], "url" | "images">,
+): MetadataRoute.Sitemap[number] {
   const base = siteContact.siteUrl.replace(/\/$/, "");
+  const url = path === "/" ? base : `${base}${path}`;
+  return {
+    url,
+    images: [siteImageAbsoluteUrl(heroImageIdForPath(path))],
+    ...rest,
+  };
+}
+
+export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 
   return [
-    {
-      url: base,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 1,
-    },
-    {
-      url: `${base}/buyers`,
-      lastModified,
-      changeFrequency: "weekly",
-      priority: 0.88,
-    },
-    {
-      url: `${base}/buyers/process`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.82,
-    },
-    {
-      url: `${base}/rhodes-ranch-las-vegas`,
+    pageEntry("/", { lastModified, changeFrequency: "weekly", priority: 1 }),
+    pageEntry("/buyers", { lastModified, changeFrequency: "weekly", priority: 0.88 }),
+    pageEntry("/buyers/process", { lastModified, changeFrequency: "monthly", priority: 0.82 }),
+    pageEntry("/rhodes-ranch-las-vegas", {
       lastModified,
       changeFrequency: "weekly",
       priority: 0.92,
-    },
-    {
-      url: `${base}/rhodes-ranch-lifestyle`,
+    }),
+    pageEntry("/rhodes-ranch-lifestyle", {
       lastModified,
       changeFrequency: "monthly",
       priority: 0.85,
-    },
-    {
-      url: `${base}/map`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.78,
-    },
-    {
-      url: `${base}/locations`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.83,
-    },
-    {
-      url: `${base}/search`,
-      lastModified,
-      changeFrequency: "daily",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/rhodes-ranch-mls-listings`,
+    }),
+    pageEntry("/map", { lastModified, changeFrequency: "monthly", priority: 0.78 }),
+    pageEntry("/locations", { lastModified, changeFrequency: "monthly", priority: 0.83 }),
+    pageEntry("/search", { lastModified, changeFrequency: "daily", priority: 0.9 }),
+    pageEntry("/rhodes-ranch-mls-listings", {
       lastModified,
       changeFrequency: "daily",
       priority: 0.91,
-    },
-    {
-      url: `${base}/rhodes-ranch-new-listings`,
+    }),
+    pageEntry("/rhodes-ranch-new-listings", {
       lastModified,
       changeFrequency: "daily",
       priority: 0.88,
-    },
-    {
-      url: `${base}/rhodes-ranch-homes-under-500k`,
+    }),
+    pageEntry("/rhodes-ranch-homes-under-500k", {
       lastModified,
       changeFrequency: "daily",
       priority: 0.87,
-    },
-    {
-      url: `${base}/rhodes-ranch-pool-homes`,
+    }),
+    pageEntry("/rhodes-ranch-pool-homes", {
       lastModified,
       changeFrequency: "daily",
       priority: 0.87,
-    },
-    {
-      url: `${base}/open-houses`,
-      lastModified,
-      changeFrequency: "daily",
-      priority: 0.86,
-    },
-    ...WEEKDAY_SLUGS.map((weekday) => ({
-      url: `${base}/open-houses/${weekday}`,
-      lastModified,
-      changeFrequency: "daily" as const,
-      priority: 0.84,
-    })),
-    {
-      url: `${base}/contact`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/questions`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.84,
-    },
+    }),
+    pageEntry("/open-houses", { lastModified, changeFrequency: "daily", priority: 0.86 }),
+    ...WEEKDAY_SLUGS.map((weekday) =>
+      pageEntry(`/open-houses/${weekday}`, {
+        lastModified,
+        changeFrequency: "daily",
+        priority: 0.84,
+      }),
+    ),
+    pageEntry("/contact", { lastModified, changeFrequency: "monthly", priority: 0.8 }),
+    pageEntry("/questions", { lastModified, changeFrequency: "monthly", priority: 0.84 }),
   ];
 }

@@ -23,9 +23,9 @@ export const aeoFaq: FaqItem[] = [
       "It is generally about a 15- to 25-minute drive depending on traffic, your exact start point on the Strip, and time of day.",
   },
   {
-    question: "How is the neighborhood in Rhodes Ranch, Las Vegas, NV?",
+    question: "What amenities and layout does Rhodes Ranch include?",
     answer:
-      "Rhodes Ranch is widely known as a guard-gated, golf-centered community with recreation amenities and planned residential sections. Neighborhood fit depends on your budget, commute, and preferred home style, so touring at different times of day is important.",
+      "Rhodes Ranch is a guard-gated, golf-centered community with recreation amenities and planned residential sections. Fit depends on your budget, commute, and preferred home style, so touring at different times of day is useful.",
   },
   {
     question: "Who is Dr. Jan Duffy and what does Rhodes Ranch Las Vegas Real Estate Division do?",

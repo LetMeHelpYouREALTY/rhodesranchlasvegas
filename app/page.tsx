@@ -1,5 +1,8 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { GbpActionBar } from "@/components/gbp/GbpActionBar";
+import { PageHero } from "@/components/media/PageHero";
+import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -48,7 +51,7 @@ export default function HomePage() {
         })}
       />
       <JsonLd data={faqPageJsonLd(rhodesRanchFaq)} />
-      <header className="max-w-3xl">
+      <PageHero imageId="hero-homes">
         <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-emerald-900/85">
           Southwest Las Vegas · {siteContact.address.postalCode}
         </p>
@@ -64,7 +67,8 @@ export default function HomePage() {
           work with {siteContact.legalBrokerage} on listings, showings, and strategy for{" "}
           {siteContact.address.postalCode}.
         </p>
-        <div className="mt-8 flex flex-wrap gap-3">
+        <GbpActionBar />
+        <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/search"
             className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
@@ -90,7 +94,7 @@ export default function HomePage() {
             Home buyer guide
           </Link>
         </div>
-      </header>
+      </PageHero>
 
       <RealScoutLeadSection
         className="mt-10"
@@ -102,29 +106,34 @@ export default function HomePage() {
         className="mt-10 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/40 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
         aria-labelledby="buyers-engage-heading"
       >
-        <h2
-          id="buyers-engage-heading"
-          className="font-display text-2xl font-semibold tracking-tight text-emerald-950"
-        >
-          Buying a home in Rhodes Ranch?
-        </h2>
-        <p className="mt-3 max-w-2xl text-stone-700">
-          Get a clear path from pre-approval to tour to offer—plus home search and buyer specialist
-          support from {siteContact.secondaryContactName}. No fluff; just practical next steps.
-        </p>
-        <div className="mt-5 flex flex-wrap gap-3">
-          <Link
-            href="/buyers"
-            className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
-          >
-            Open buyer hub
-          </Link>
-          <Link
-            href="/buyers/process"
-            className="text-sm font-semibold text-emerald-900 underline-offset-2 hover:underline"
-          >
-            See the Las Vegas buying process
-          </Link>
+        <div className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h2
+              id="buyers-engage-heading"
+              className="font-display text-2xl font-semibold tracking-tight text-emerald-950"
+            >
+              Buying a home in Rhodes Ranch?
+            </h2>
+            <p className="mt-3 max-w-2xl text-stone-700">
+              Get a clear path from pre-approval to tour to offer—plus home search and buyer specialist
+              support from {siteContact.secondaryContactName}. No fluff; just practical next steps.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/buyers"
+                className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
+              >
+                Open buyer hub
+              </Link>
+              <Link
+                href="/buyers/process"
+                className="text-sm font-semibold text-emerald-900 underline-offset-2 hover:underline"
+              >
+                See the Las Vegas buying process
+              </Link>
+            </div>
+          </div>
+          <SectionFigure imageId="hero-buyers" caption="Buying a home in Rhodes Ranch?" />
         </div>
       </section>
 
@@ -175,6 +184,7 @@ export default function HomePage() {
           <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950 sm:text-[1.75rem]">
             Why Buyers Watch Rhodes Ranch
           </h2>
+          <SectionFigure imageId="hero-golf" caption="Why Buyers Watch Rhodes Ranch" />
           <p className="leading-relaxed text-stone-700">
             Guard-gated Rhodes Ranch pairs a central Ted Robinson golf course with recreation,
             trails, and southwest Las Vegas convenience. For a dedicated search-intent page (NAP, map, and FAQ aligned with our Google
@@ -203,20 +213,26 @@ export default function HomePage() {
         <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950">
           Rhodes Ranch Real Estate Help
         </h2>
-        <p className="mt-3 max-w-3xl leading-relaxed text-stone-700">
-          Whether you are relocating from California, upsizing locally, or preparing to sell Rhodes
-          Ranch Las Vegas homes, {siteContact.agentName} and {siteContact.secondaryContactName}{" "}
-          provide pricing perspective, contract guidance, and home search support aligned with
-          today&apos;s market—without sensational claims. Start with a conversation or browse{" "}
-          <Link href="/search" className="font-medium text-emerald-900 underline-offset-2 hover:underline">
-            active listings for the Rhodes Ranch Las Vegas area
-          </Link>
-          . For direct answers about our team, open houses, and 89148, see the{" "}
-          <Link href="/questions" className="font-medium text-emerald-900 underline-offset-2 hover:underline">
-            Rhodes Ranch and Las Vegas real estate Q&amp;A
-          </Link>
-          .
-        </p>
+        <div className="mt-5 grid gap-6 md:grid-cols-2 md:items-center">
+          <p className="leading-relaxed text-stone-700">
+            Whether you are relocating from California, upsizing locally, or preparing to sell Rhodes
+            Ranch Las Vegas homes, {siteContact.agentName} and {siteContact.secondaryContactName}{" "}
+            provide pricing perspective, contract guidance, and home search support aligned with
+            today&apos;s market—without sensational claims. Start with a conversation or browse{" "}
+            <Link href="/search" className="font-medium text-emerald-900 underline-offset-2 hover:underline">
+              active listings for the Rhodes Ranch Las Vegas area
+            </Link>
+            . For direct answers about our team, open houses, and 89148, see the{" "}
+            <Link href="/questions" className="font-medium text-emerald-900 underline-offset-2 hover:underline">
+              Rhodes Ranch and Las Vegas real estate Q&amp;A
+            </Link>
+            .
+          </p>
+          <SectionFigure
+            imageId="hero-consultation"
+            caption="Rhodes Ranch Real Estate Help"
+          />
+        </div>
       </section>
 
       <LocalExploreNav currentPath="/" className="mt-16" />
@@ -227,6 +243,7 @@ export default function HomePage() {
           titleLevel={3}
           heading="Rhodes Ranch FAQ"
           items={rhodesRanchFaq}
+          imageId="hero-homes"
         />
       </div>
     </main>

@@ -35,6 +35,7 @@ export function SiteFooter({ className }: { className?: string }) {
             {siteContact.address.addressLocality}, {siteContact.address.addressRegion}{" "}
             {siteContact.address.postalCode}
           </p>
+          <p className="mt-2 text-sm text-stone-400">{siteContact.hoursSummaryLine}</p>
           <p className="mt-2">
             <a
               href={siteContact.phoneTelHref}

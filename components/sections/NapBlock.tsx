@@ -1,3 +1,4 @@
+import { SiteImage } from "@/components/media/SiteImage";
 import {
   googleBusinessProfileReviewHref,
   googleMapsProfileHref,
@@ -19,6 +20,12 @@ export function NapBlock({ titleLevel = 3, headingId = "nap-heading" }: NapBlock
       aria-labelledby={headingId}
       className="rounded-2xl border border-stone-200/90 bg-white p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5"
     >
+      <SiteImage
+        id="hero-office"
+        sizes="(max-width: 768px) 100vw, 360px"
+        caption="Office at 7272 S El Capitan Way, Las Vegas, NV 89148"
+        className="mb-4"
+      />
       <TitleTag
         id={headingId}
         className="font-display text-xl font-semibold text-emerald-950"

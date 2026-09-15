@@ -1,8 +1,10 @@
+import { SectionFigure } from "@/components/media/SectionFigure";
 import {
   RealScoutOfficeListings,
   type RealScoutMountStrategy,
 } from "@/components/realscout/RealScoutOfficeListings";
 import { publicEnv } from "@/lib/env";
+import type { SiteImageId } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
 type RealScoutLeadSectionProps = {
@@ -25,6 +27,8 @@ type RealScoutLeadSectionProps = {
    * Use `immediate` on `/search` and similar primary-content routes.
    */
   listingMountStrategy?: RealScoutMountStrategy;
+  /** Heading-matched photo for the listings H2/H3. */
+  imageId?: SiteImageId;
 };
 
 /**
@@ -38,6 +42,7 @@ export function RealScoutLeadSection({
   headingId = "office-listings-lead-heading",
   titleElement = "h3",
   listingMountStrategy,
+  imageId,
 }: RealScoutLeadSectionProps) {
   const intro =
     listingIntro ??
@@ -50,6 +55,8 @@ export function RealScoutLeadSection({
     listingMountStrategy ?? (variant === "openHouses" ? "immediate" : "idle");
 
   const TitleTag = titleElement === "h2" ? "h2" : "h3";
+  const headingImageId: SiteImageId =
+    imageId ?? (variant === "openHouses" ? "hero-open-house" : "section-listings-grid");
 
   return (
     <section
@@ -66,6 +73,11 @@ export function RealScoutLeadSection({
         >
           {heading}
         </TitleTag>
+        <SectionFigure
+          imageId={headingImageId}
+          caption={heading}
+          className="mt-4 max-w-xl"
+        />
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-stone-600">{intro}</p>
         <div className="mt-6 rounded-2xl border border-stone-200/90 bg-white p-4 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-6">
           <RealScoutOfficeListings
