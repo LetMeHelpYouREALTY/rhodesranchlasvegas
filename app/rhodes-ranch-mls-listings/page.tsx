@@ -110,7 +110,7 @@ export default function RhodesRanchMlsListingsPage() {
           Related Rhodes Ranch Listing Searches
         </h2>
         <SectionFigure
-          imageId="hero-new-listing"
+          imageId="section-related-searches"
           caption="Related Rhodes Ranch Listing Searches"
           className="mt-4 max-w-xl"
         />

@@ -256,7 +256,7 @@ export default function RhodesRanchLifestylePage() {
             Homes, pricing, and HOA context
           </h3>
           <SectionFigure
-            imageId="hero-living-room"
+            imageId="section-listings-grid"
             caption="Homes, pricing, and HOA context"
             className="mt-4"
           />

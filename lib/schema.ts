@@ -104,6 +104,46 @@ export function realEstateAgentJsonLd(): Record<string, unknown> {
       name: siteContact.legalBrokerage,
     },
     openingHoursSpecification,
+    openingHours: `Mo-Su ${publicEnv.officeWeekdayOpens}-${publicEnv.officeWeekdayCloses}`,
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: siteContact.phoneE164,
+        contactType: "customer service",
+        areaServed: "US",
+        availableLanguage: ["English"],
+        hoursAvailable: openingHoursSpecification,
+      },
+    ],
+    makesOffer: [
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Buyer representation for Rhodes Ranch Las Vegas homes",
+          areaServed: siteContact.serviceAreaDescription,
+          provider: { "@id": `${base}/#agent` },
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Private home tours in Rhodes Ranch and 89148",
+          areaServed: siteContact.serviceAreaDescription,
+          provider: { "@id": `${base}/#agent` },
+        },
+      },
+      {
+        "@type": "Offer",
+        itemOffered: {
+          "@type": "Service",
+          name: "Listing representation for Rhodes Ranch Las Vegas sellers",
+          areaServed: siteContact.serviceAreaDescription,
+          provider: { "@id": `${base}/#agent` },
+        },
+      },
+    ],
     potentialAction: {
       "@type": "ScheduleAction",
       name: "Schedule a private conversation",
