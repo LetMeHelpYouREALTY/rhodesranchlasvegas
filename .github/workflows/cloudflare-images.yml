@@ -1,0 +1,29 @@
+# Upload git-backed WebP photos to Cloudflare hosted Images (custom IDs).
+# Add repository secret CLOUDFLARE_API_TOKEN (Account.Cloudflare Images Edit).
+# After a green run, set NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH=byE6BTe9lNqo21V57n4aPQ
+# on Vercel Production + Preview and redeploy. Do not orange-cloud Vercel DNS.
+name: Cloudflare hosted Images
+
+on:
+  workflow_dispatch:
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Upload WebP catalog to Cloudflare Images
+        env:
+          CLOUDFLARE_ACCOUNT_ID: 2cc579c1ec9e426ed585e933ebf4753b
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+          NEXT_PUBLIC_CLOUDFLARE_IMAGES_VARIANT: public
+        run: npm run images:upload-cloudflare
+      - name: Verify imagedelivery.net URLs
+        env:
+          NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH: byE6BTe9lNqo21V57n4aPQ
+          NEXT_PUBLIC_CLOUDFLARE_IMAGES_VARIANT: public
+        run: npm run images:verify-cloudflare

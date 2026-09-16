@@ -1,5 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
-import { isRemoteSiteImageSrc, siteImageSrc } from "@/lib/cloudflare-images";
+import {
+  isRemoteSiteImageSrc,
+  localSiteImagePath,
+  siteImageSrc,
+} from "@/lib/cloudflare-images";
 import { SITE_IMAGES, type SiteImageId } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
@@ -15,8 +22,9 @@ type SiteImageProps = {
 };
 
 /**
- * Heading-matched photograph. Serves Cloudflare Images when the account hash is set;
+ * Heading-matched photograph. Serves Cloudflare hosted Images when the account hash is set;
  * otherwise the git-backed file in `public/images/` (Vercel Image Optimization).
+ * If a hosted URL 404s (upload still pending), fall back to the git copy.
  */
 export function SiteImage({
   id,
@@ -27,7 +35,10 @@ export function SiteImage({
   caption,
 }: SiteImageProps) {
   const meta = SITE_IMAGES[id];
-  const src = siteImageSrc(id);
+  const remoteOrLocal = siteImageSrc(id);
+  const local = localSiteImagePath(id);
+  const [src, setSrc] = useState(remoteOrLocal);
+
   const image = (
     <Image
       src={src}
@@ -38,6 +49,9 @@ export function SiteImage({
       loading={priority ? "eager" : "lazy"}
       fetchPriority={priority ? "high" : "auto"}
       unoptimized={isRemoteSiteImageSrc(src)}
+      onError={() => {
+        if (src !== local) setSrc(local);
+      }}
       className={cn(
         "h-auto w-full rounded-2xl object-cover shadow-[0_8px_30px_rgb(0_0_0_/0.08)] ring-1 ring-stone-900/5",
         className,

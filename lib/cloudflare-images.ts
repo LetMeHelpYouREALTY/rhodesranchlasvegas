@@ -1,8 +1,12 @@
 /**
- * Cloudflare Images is the primary public CDN. Git copies in `public/images/` are the backup
+ * Cloudflare hosted Images is the primary public CDN. Git copies in `public/images/` are the backup
  * (and the source for `scripts/upload-cloudflare-images.mjs`).
  *
- * Delivery uses imagedelivery.net — not Cloudflare orange-cloud proxy in front of Vercel.
+ * Delivery (hosted images, named variant — default `public`):
+ *   https://imagedelivery.net/<ACCOUNT_HASH>/<IMAGE_ID>/<VARIANT_NAME>
+ * Do not orange-cloud the Vercel hostname and do not use /cdn-cgi/image/ on Vercel.
+ *
+ * @see https://developers.cloudflare.com/images/optimization/hosted-images/serve-uploaded-images/
  * @see https://developers.cloudflare.com/images/storage/upload-images/upload-custom-path/
  */
 

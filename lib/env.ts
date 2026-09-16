@@ -488,9 +488,11 @@ export const publicEnv = {
   })(),
 
   /**
-   * Cloudflare Images account hash (imagedelivery.net/<hash>/<id>/<variant>).
-   * Primary CDN for heading photos; git copies in public/images/ remain the backup.
-   * Do not orange-cloud the Vercel hostname — this uses imagedelivery.net instead.
+   * Cloudflare hosted Images account hash.
+   * Delivery: https://imagedelivery.net/<hash>/<id>/<variant>
+   * Leave unset until `npm run images:upload-cloudflare` + `npm run images:verify-cloudflare`
+   * succeed — otherwise page/OG/JSON-LD URLs 404. Git `/images/*.webp` is the backup.
+   * Do not orange-cloud the Vercel hostname.
    */
   cloudflareImagesAccountHash: (() => {
     const raw = envOptional("NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH")?.trim();

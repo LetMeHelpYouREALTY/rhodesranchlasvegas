@@ -47,6 +47,7 @@ If the browser shows Vercel’s minimal **404: NOT_FOUND** page (`Code: NOT_FOUN
    - Optional: **`NEXT_PUBLIC_LOCATIONS_MAP_EMBED_URL`** — same value unless a site should show a different “Key locations” map (see [`.env.example`](.env.example)). If unset, `lib/env.ts` defaults the locations map to the same embed.
    - **Vercel portfolio:** In **Team → Settings → Environment Variables** (or each project’s **Settings → Environment Variables**), set the same `NEXT_PUBLIC_OPEN_HOUSES_MAP_EMBED_URL` for **Production** (and Preview if you test maps there), then **redeploy** each project so the new `NEXT_PUBLIC_*` is baked in. Cloned/forked repos: either merge the default from `lib/env.ts` or set the variable per project.
 7. **Custom domains** — **Settings → Domains**: each domain must be attached to **this** project. At your DNS host (e.g. Cloudflare), use the records Vercel shows. For Cloudflare, use **DNS only (gray cloud)** for records pointing at Vercel—orange-cloud proxy can break SSL or routing with Vercel.
-8. **Local sanity check** — Run `npm run build` locally; it must succeed before expecting a green Vercel deploy.
+8. **Cloudflare hosted Images** — heading photos upload to Images storage (`npm run images:upload-cloudflare`) and serve from `https://imagedelivery.net/byE6BTe9lNqo21V57n4aPQ/<id>/public`. Keep git copies in `public/images/` as backup. Set `NEXT_PUBLIC_CLOUDFLARE_IMAGES_ACCOUNT_HASH` on Vercel only after `npm run images:verify-cloudflare` passes. This is **not** the same as orange-clouding the Vercel hostname.
+9. **Local sanity check** — Run `npm run build` locally; it must succeed before expecting a green Vercel deploy.
 
 Reference: [Vercel NOT_FOUND](https://vercel.com/docs/errors/NOT_FOUND).
