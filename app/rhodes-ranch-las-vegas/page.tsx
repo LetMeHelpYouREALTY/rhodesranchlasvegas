@@ -180,7 +180,7 @@ export default function RhodesRanchLasVegasHubPage() {
             to line up 89148 stops. Times change; confirm before you drive.
           </li>
         </ul>
-          <SectionFigure imageId="hero-buyers" caption="How we help in Rhodes Ranch" />
+          <SectionFigure imageId="section-how-we-help" caption="How we help in Rhodes Ranch" />
         </div>
       </section>
 
@@ -228,6 +228,11 @@ export default function RhodesRanchLasVegasHubPage() {
           <h2 className="font-display text-xl font-semibold text-emerald-950 sm:text-2xl">
             Office, Call, and Google Business Profile
           </h2>
+          <SectionFigure
+            imageId="hero-office"
+            caption="Office, Call, and Google Business Profile"
+            className="max-w-xl"
+          />
           <p className="text-sm leading-relaxed text-stone-600">
             NAP and hours match our{" "}
             <a

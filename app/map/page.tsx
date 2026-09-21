@@ -89,7 +89,7 @@ export default function MapPage() {
             </p>
           </div>
           <SectionFigure
-            imageId="hero-aerial-map"
+            imageId="section-interactive-map"
             caption="Interactive Google Map of Rhodes Ranch and Spring Valley"
           />
         </div>

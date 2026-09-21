@@ -81,7 +81,7 @@ export function OpenHousesMapSection() {
           Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?
         </h3>
         <SiteImage
-          id="hero-open-house"
+          id="section-open-house-map"
           sizes="(max-width: 768px) 100vw, 720px"
           caption="Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?"
           className="mt-4"

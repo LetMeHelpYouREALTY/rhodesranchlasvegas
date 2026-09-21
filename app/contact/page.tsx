@@ -128,7 +128,7 @@ export default function ContactPage() {
           Schedule a private 15-minute conversation
         </h2>
         <SectionFigure
-          imageId="hero-consultation"
+          imageId="section-schedule-call"
           caption="Schedule a private 15-minute conversation"
           className="mt-4 max-w-xl"
         />

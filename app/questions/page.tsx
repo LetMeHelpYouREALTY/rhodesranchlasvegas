@@ -47,7 +47,7 @@ export default function QuestionsPage() {
           { name: "Q&A", path: "/questions" },
         ]}
       />
-      <PageHero imageId="hero-consultation">
+      <PageHero imageId="hero-questions">
         <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-emerald-900/85">
           Q&amp;A · {siteContact.address.postalCode}
         </p>
@@ -73,7 +73,7 @@ export default function QuestionsPage() {
           titleLevel={2}
           heading="Questions and answers"
           items={aeoFaq}
-          imageId="hero-consultation"
+          imageId="hero-questions"
         />
       </div>
 

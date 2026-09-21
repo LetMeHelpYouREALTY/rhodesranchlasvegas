@@ -154,6 +154,60 @@ export const SITE_IMAGES = {
     height: 864,
     heading: "Key locations and office directions",
   },
+  "section-buyer-start": {
+    alt: "Homebuyer reviewing a listing search on a tablet on a patio along a Rhodes Ranch Las Vegas street",
+    width: 1152,
+    height: 864,
+    heading: "Why Buyers Start Their Search Here",
+  },
+  "section-community-glance": {
+    alt: "Aerial glance at Rhodes Ranch curved streets, walking paths, and golf fairways in Spring Valley 89148",
+    width: 1152,
+    height: 864,
+    heading: "Rhodes Ranch at a Glance",
+  },
+  "section-schedule-call": {
+    alt: "Calendar, phone, and community map set for a 15-minute real estate conversation in Las Vegas",
+    width: 1152,
+    height: 864,
+    heading: "Schedule a private 15-minute conversation",
+  },
+  "section-interactive-map": {
+    alt: "Tablet map of Rhodes Ranch and Spring Valley 89148 beside a printed community map",
+    width: 1152,
+    height: 864,
+    heading: "Interactive Google Map of Rhodes Ranch and Spring Valley",
+  },
+  "section-how-we-help": {
+    alt: "REALTOR reviewing Rhodes Ranch listing sheets with buyers at a table overlooking golf-course homes",
+    width: 1152,
+    height: 864,
+    heading: "How we help in Rhodes Ranch",
+  },
+  "section-open-house-map": {
+    alt: "Open-house tour map with pins, keys, and a southwest Las Vegas home entry in 89148",
+    width: 1280,
+    height: 720,
+    heading: "Where are the open houses and tour stops in Rhodes Ranch and Las Vegas?",
+  },
+  "hero-questions": {
+    alt: "Q&A notebook, glasses, and community map at the Rhodes Ranch Las Vegas office",
+    width: 1280,
+    height: 720,
+    heading: "Rhodes Ranch and Las Vegas real estate Q&A",
+  },
+  "section-city-access": {
+    alt: "Resort-style pool patio with tile roofs and Las Vegas valley roads in the distance from 89148",
+    width: 1152,
+    height: 864,
+    heading: "Resort-style living and city access",
+  },
+  "hero-not-found": {
+    alt: "Dusk street and walking path in a southwest Las Vegas golf community near Rhodes Ranch 89148",
+    width: 1280,
+    height: 720,
+    heading: "Page not found",
+  },
   "og-share": {
     alt: "Rhodes Ranch Las Vegas golf community aerial for social sharing",
     width: 1280,
@@ -182,7 +236,7 @@ export const ROUTE_HERO_IMAGE = {
   "/map": "hero-aerial-map",
   "/locations": "hero-office",
   "/contact": "hero-consultation",
-  "/questions": "hero-consultation",
+  "/questions": "hero-questions",
 } as const satisfies Record<string, SiteImageId>;
 
 export type HeroRoutePath = keyof typeof ROUTE_HERO_IMAGE;

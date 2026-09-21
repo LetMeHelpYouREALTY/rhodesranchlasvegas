@@ -86,7 +86,7 @@ export default function BuyersPage() {
         <h2 className="text-2xl font-semibold text-emerald-950">
           Why Buyers Start Their Search Here
         </h2>
-        <SectionFigure imageId="hero-golf" caption="Why Buyers Start Their Search Here" />
+        <SectionFigure imageId="section-buyer-start" caption="Why Buyers Start Their Search Here" />
         <p className="leading-relaxed">
           Rhodes Ranch offers guard-gated neighborhoods, a Ted Robinson golf course, recreation, and
           quick access to shopping and major roads. When you are ready, we align home search filters

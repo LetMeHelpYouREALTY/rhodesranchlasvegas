@@ -115,7 +115,7 @@ export default function RhodesRanchLifestylePage() {
           <h2 id="overview-heading" className="font-display text-2xl font-semibold text-emerald-950">
             Rhodes Ranch at a Glance
           </h2>
-          <SectionFigure imageId="hero-homes" caption="Rhodes Ranch at a Glance" className="mt-4" />
+          <SectionFigure imageId="section-community-glance" caption="Rhodes Ranch at a Glance" className="mt-4" />
           <p className="mt-4 leading-relaxed">
             Rhodes Ranch is a guard-gated, roughly 1,330-acre master-planned community in Spring
             Valley—about 15 minutes southwest of the Las Vegas Strip. Development began in 1997,
@@ -235,7 +235,7 @@ export default function RhodesRanchLifestylePage() {
             Resort-style living and city access
           </h3>
           <SectionFigure
-            imageId="hero-pool"
+            imageId="section-city-access"
             caption="Resort-style living and city access"
             className="mt-4"
           />

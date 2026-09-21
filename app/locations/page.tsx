@@ -97,7 +97,7 @@ export default function LocationsPage() {
           Primary office and map
         </h2>
         <SectionFigure
-          imageId="hero-office"
+          imageId="section-key-locations"
           caption="Primary office and map"
           className="mt-4 max-w-xl"
         />
