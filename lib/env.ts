@@ -185,7 +185,7 @@ export const publicEnv = {
   ),
   hoursSummaryLine: env(
     "NEXT_PUBLIC_HOURS_SUMMARY",
-    "Open daily 9:00 a.m.–6:00 p.m. (Las Vegas time).",
+    "Open daily 8:00 a.m.–8:00 p.m. (Las Vegas time).",
   ),
 
   /**
@@ -202,8 +202,8 @@ export const publicEnv = {
    * Opening/closing times for JSON-LD — applied to all days listed in `siteContact.openingHoursSpecification`
    * (Google Business Profile: Sun–Sat same hours).
    */
-  officeWeekdayOpens: env("NEXT_PUBLIC_OFFICE_WEEKDAY_OPENS", "09:00"),
-  officeWeekdayCloses: env("NEXT_PUBLIC_OFFICE_WEEKDAY_CLOSES", "18:00"),
+  officeWeekdayOpens: env("NEXT_PUBLIC_OFFICE_WEEKDAY_OPENS", "08:00"),
+  officeWeekdayCloses: env("NEXT_PUBLIC_OFFICE_WEEKDAY_CLOSES", "20:00"),
 
   /**
    * Full Google Maps embed URL (optional). If unset, built from NEXT_PUBLIC_MAP_QUERY or address fields.
