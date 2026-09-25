@@ -240,7 +240,7 @@ export default function ContactPage() {
           titleLevel={3}
           heading="Questions about scheduling and contact"
           items={contactFaq}
-          imageId="hero-consultation"
+          imageId="section-contact-faq"
         />
       </div>
     </main>

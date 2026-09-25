@@ -95,7 +95,7 @@ export default function RhodesRanchNewListingsPage() {
           titleLevel={3}
           heading="New Rhodes Ranch listings FAQ"
           items={newListingsFaq}
-          imageId="hero-new-listing"
+          imageId="section-new-listings-faq"
         />
       </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />

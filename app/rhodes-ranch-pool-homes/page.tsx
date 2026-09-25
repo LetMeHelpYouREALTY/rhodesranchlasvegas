@@ -96,7 +96,7 @@ export default function RhodesRanchPoolHomesPage() {
           titleLevel={3}
           heading="Rhodes Ranch pool homes FAQ"
           items={poolHomesFaq}
-          imageId="hero-pool"
+          imageId="section-pool-faq"
         />
       </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />

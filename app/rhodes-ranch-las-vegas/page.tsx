@@ -311,7 +311,7 @@ export default function RhodesRanchLasVegasHubPage() {
           titleLevel={3}
           heading="Rhodes Ranch Las Vegas FAQ"
           items={rhodesRanchFaq}
-          imageId="hero-homes"
+          imageId="section-faq-community"
         />
       </div>
     </main>

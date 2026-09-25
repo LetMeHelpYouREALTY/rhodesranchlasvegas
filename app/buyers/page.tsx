@@ -121,7 +121,7 @@ export default function BuyersPage() {
           </li>
           </ol>
           <SectionFigure
-            imageId="section-keys-closing"
+            imageId="section-buyer-journey"
             caption="Your Buyer Journey (Overview)"
           />
         </div>
@@ -153,7 +153,7 @@ export default function BuyersPage() {
             </Link>
           </div>
           <SectionFigure
-            imageId="section-trails"
+            imageId="section-golf-commute"
             caption="Explore golf, recreation, and commute before you offer"
           />
         </div>
@@ -165,14 +165,14 @@ export default function BuyersPage() {
           titleLevel={3}
           heading="Buyer FAQ"
           items={buyerFaq}
-          imageId="hero-buyers"
+          imageId="section-buyer-faq"
         />
       </div>
 
       <section className="mt-12 border-t border-emerald-900/10 pt-10">
         <h3 className="text-xl font-semibold text-emerald-950">Ready for the next step?</h3>
         <SectionFigure
-          imageId="hero-consultation"
+          imageId="section-schedule-call"
           caption="Ready for the next step?"
           className="mt-4 max-w-xl"
         />

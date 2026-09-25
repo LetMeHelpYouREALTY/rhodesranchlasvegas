@@ -184,7 +184,7 @@ export default function HomePage() {
           <h2 className="font-display text-2xl font-semibold tracking-tight text-emerald-950 sm:text-[1.75rem]">
             Why Buyers Watch Rhodes Ranch
           </h2>
-          <SectionFigure imageId="hero-golf" caption="Why Buyers Watch Rhodes Ranch" />
+          <SectionFigure imageId="section-watch-community" caption="Why Buyers Watch Rhodes Ranch" />
           <p className="leading-relaxed text-stone-700">
             Guard-gated Rhodes Ranch pairs a central Ted Robinson golf course with recreation,
             trails, and southwest Las Vegas convenience. For a dedicated search-intent page (NAP, map, and FAQ aligned with our Google
@@ -229,7 +229,7 @@ export default function HomePage() {
             .
           </p>
           <SectionFigure
-            imageId="hero-consultation"
+            imageId="section-how-we-help"
             caption="Rhodes Ranch Real Estate Help"
           />
         </div>
@@ -243,7 +243,7 @@ export default function HomePage() {
           titleLevel={3}
           heading="Rhodes Ranch FAQ"
           items={rhodesRanchFaq}
-          imageId="hero-homes"
+          imageId="section-faq-community"
         />
       </div>
     </main>

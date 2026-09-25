@@ -73,7 +73,7 @@ export default function QuestionsPage() {
           titleLevel={2}
           heading="Questions and answers"
           items={aeoFaq}
-          imageId="hero-questions"
+          imageId="section-qa-answers"
         />
       </div>
 

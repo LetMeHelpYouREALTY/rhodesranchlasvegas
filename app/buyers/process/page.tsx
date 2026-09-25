@@ -154,7 +154,7 @@ export default function BuyersProcessPage() {
       <section className="mt-14 rounded-2xl border border-emerald-900/15 bg-emerald-50/50 p-6">
         <h3 className="text-lg font-semibold text-emerald-950">Work with our buyer specialist</h3>
         <SectionFigure
-          imageId="hero-consultation"
+          imageId="section-how-we-help"
           caption="Work with our buyer specialist"
           className="mt-4 max-w-xl"
         />

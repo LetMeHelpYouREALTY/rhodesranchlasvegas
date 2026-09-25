@@ -289,7 +289,7 @@ export default function RhodesRanchLifestylePage() {
             Want to go deeper?
           </h3>
           <SectionFigure
-            imageId="hero-consultation"
+            imageId="section-schedule-call"
             caption="Want to go deeper?"
             className="mt-4 max-w-xl"
           />
@@ -361,7 +361,7 @@ export default function RhodesRanchLifestylePage() {
       <section className="mt-12 rounded-2xl border border-dashed border-emerald-900/30 bg-emerald-50/40 p-6">
         <h3 className="font-display text-xl font-semibold text-emerald-950">Work with a local REALTOR®</h3>
         <SectionFigure
-          imageId="section-private-tour"
+          imageId="section-how-we-help"
           caption="Work with a local REALTOR®"
           className="mt-4 max-w-xl"
         />

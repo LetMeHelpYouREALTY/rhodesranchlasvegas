@@ -95,7 +95,7 @@ export default function RhodesRanchHomesUnder500kPage() {
           titleLevel={3}
           heading="Homes under $500k FAQ"
           items={homesUnder500kFaq}
-          imageId="hero-starter-home"
+          imageId="section-price-faq"
         />
       </div>
       <LocalExploreNav currentPath={canonicalPath} className="mt-14" />

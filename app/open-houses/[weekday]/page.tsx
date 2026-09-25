@@ -120,7 +120,7 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
           titleLevel={3}
           heading={`${label} open house FAQ`}
           items={weekdayOpenHouseFaq}
-          imageId="hero-open-house"
+          imageId="section-weekday-faq"
         />
       </div>
 
