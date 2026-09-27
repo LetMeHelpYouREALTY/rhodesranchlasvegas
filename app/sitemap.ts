@@ -34,6 +34,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.85,
     }),
+    pageEntry("/nearby-amenities", {
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.86,
+    }),
     pageEntry("/map", { lastModified, changeFrequency: "monthly", priority: 0.78 }),
     pageEntry("/locations", { lastModified, changeFrequency: "monthly", priority: 0.83 }),
     pageEntry("/search", { lastModified, changeFrequency: "daily", priority: 0.9 }),

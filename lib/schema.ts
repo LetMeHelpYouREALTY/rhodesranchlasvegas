@@ -1,5 +1,6 @@
 import { siteImageAbsoluteUrl } from "@/lib/cloudflare-images";
 import { publicEnv } from "@/lib/env";
+import { rhodesRanchCommunity } from "@/lib/rhodes-ranch-community";
 import { heroImageIdForPath, SITE_IMAGES, type SiteImageId } from "@/lib/site-images";
 import { googleMapsProfileHref, siteContact } from "@/lib/site-contact";
 
@@ -95,10 +96,21 @@ export function realEstateAgentJsonLd(): Record<string, unknown> {
       latitude: siteContact.geo.latitude,
       longitude: siteContact.geo.longitude,
     },
-    areaServed: {
-      "@type": "Place",
-      name: siteContact.serviceAreaDescription,
-    },
+    areaServed: [
+      {
+        "@type": "Place",
+        name: siteContact.serviceAreaDescription,
+      },
+      {
+        "@type": "Place",
+        name: rhodesRanchCommunity.fullLabel,
+        geo: {
+          "@type": "GeoCoordinates",
+          latitude: rhodesRanchCommunity.center.latitude,
+          longitude: rhodesRanchCommunity.center.longitude,
+        },
+      },
+    ],
     parentOrganization: {
       "@type": "Organization",
       name: siteContact.legalBrokerage,
@@ -237,5 +249,72 @@ export function faqPageJsonLd(items: FaqItem[]): Record<string, unknown> {
         text: item.answer,
       },
     })),
+  };
+}
+
+export type SchemaPlaceListItem = {
+  name: string;
+  schemaType: string;
+  streetAddress: string;
+  addressLocality: string;
+  addressRegion: string;
+  postalCode: string;
+};
+
+/** ItemList of verified nearby places for amenity / hyperlocal pages. */
+export function amenityItemListJsonLd(
+  items: SchemaPlaceListItem[],
+  listName: string,
+): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: listName,
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": item.schemaType,
+        name: item.name,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: item.streetAddress,
+          addressLocality: item.addressLocality,
+          addressRegion: item.addressRegion,
+          postalCode: item.postalCode,
+          addressCountry: "US",
+        },
+      },
+    })),
+  };
+}
+
+/** Community Place node with geo — pairs with RealEstateAgent `#agent` on amenity routes. */
+export function communityPlaceJsonLd(opts: {
+  name: string;
+  description: string;
+  latitude: number;
+  longitude: number;
+  containedInPlace?: string;
+}): Record<string, unknown> {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Place",
+    "@id": `${base}/#rhodes-ranch-community`,
+    name: opts.name,
+    description: opts.description,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: opts.latitude,
+      longitude: opts.longitude,
+    },
+    ...(opts.containedInPlace
+      ? {
+          containedInPlace: {
+            "@type": "Place",
+            name: opts.containedInPlace,
+          },
+        }
+      : {}),
   };
 }

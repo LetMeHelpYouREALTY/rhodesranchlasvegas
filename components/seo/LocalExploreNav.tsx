@@ -56,6 +56,10 @@ const EXPLORE_LINKS: { href: string; label: string }[] = [
     label: "Rhodes Ranch community guide: golf, amenities, and lifestyle",
   },
   {
+    href: "/nearby-amenities",
+    label: "Nearby amenities in Rhodes Ranch — interactive map and commute guide",
+  },
+  {
     href: "/questions",
     label: "Rhodes Ranch and Las Vegas real estate Q&A",
   },
