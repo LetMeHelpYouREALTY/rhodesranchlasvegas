@@ -15,16 +15,16 @@ import { publicEnv } from "@/lib/env";
 import {
   defaultMetadata,
   metaAddressOnly,
-  metaDescriptionTail,
   pageSocialMetadata,
 } from "@/lib/metadata";
-import { faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
+import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
 import { siteContact } from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   ...defaultMetadata,
   title: `${siteContact.siteBrandShort} homes for sale | ${siteContact.agentName}`,
-  description: `${siteContact.agentName}, ${siteContact.agentTitle}, helps you buy or sell Rhodes Ranch Las Vegas homes (89148). Weekend open house map from ${siteContact.secondaryContactName} (${siteContact.secondaryContactTitle}). Partner with ${siteContact.secondaryContactName} for buyer needs. ${metaDescriptionTail}`,
+  description:
+    "Rhodes Ranch Las Vegas homes (89148) with Dr. Jan Duffy, Listing Agent Specialist. Buy, sell, and tour guard-gated Spring Valley listings.",
   keywords: [
     "Rhodes Ranch Las Vegas homes",
     "Rhodes Ranch open houses",
@@ -43,6 +43,7 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <main className="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+      <JsonLd data={breadcrumbListJsonLd([{ name: "Home", path: "/" }])} />
       <JsonLd
         data={webPageJsonLd({
           path: "/",
