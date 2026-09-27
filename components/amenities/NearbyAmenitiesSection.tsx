@@ -37,6 +37,8 @@ export function NearbyAmenitiesSection({
         <CommunityAmenityMap
           defaultCategory={defaultCategory}
           showCuratedBesideFallback={false}
+          googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+          googleMapsMapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID}
         />
       </div>
       <p className="mt-5">

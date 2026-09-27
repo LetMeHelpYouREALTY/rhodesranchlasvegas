@@ -1,7 +1,7 @@
 /**
  * Rhodes Ranch community anchor for amenity maps and hyperlocal copy.
  * Center: Google Maps place centroid for "Rhodes Ranch, Spring Valley, NV" (matches site area-map embed in lib/env.ts).
- * Golf clubhouse: PGA.org / club listings — 20 E Rhodes Ranch Pkwy, Las Vegas, NV 89148.
+ * Golf clubhouse: rhodesranchgolf.com — 20 E Rhodes Ranch Pkwy, Las Vegas, NV 89148.
  */
 export const rhodesRanchCommunity = {
   name: "Rhodes Ranch",
@@ -35,7 +35,7 @@ export type AmenityCategoryId =
 export type AmenityCategory = {
   id: AmenityCategoryId;
   label: string;
-  /** Places API (New) `includedPrimaryTypes` — first type used for legacy nearbySearch */
+  /** Places API (New) `includedPrimaryTypes` — all types in one searchNearby call */
   primaryTypes: string[];
   ariaLabel: string;
 };
@@ -115,6 +115,8 @@ export type CuratedAmenity = {
   category: AmenityCategoryId;
   /** schema.org @type */
   schemaType: string;
+  /** Official business or agency page used to verify name and address */
+  sourceUrl: string;
   streetAddress: string;
   addressLocality: string;
   addressRegion: string;
@@ -131,6 +133,7 @@ export const curatedAmenities: CuratedAmenity[] = [
     name: "Rhodes Ranch Golf Club",
     category: "golf",
     schemaType: "GolfCourse",
+    sourceUrl: "https://rhodesranchgolf.com/",
     streetAddress: "20 E Rhodes Ranch Pkwy",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
@@ -138,19 +141,23 @@ export const curatedAmenities: CuratedAmenity[] = [
     note: "Ted Robinson design; tee times and clubhouse details on the club’s official site.",
   },
   {
-    name: "Smith's",
+    name: "Smith's Food and Drug",
     category: "grocery",
     schemaType: "GroceryStore",
+    sourceUrl:
+      "https://www.smithsfoodanddrug.com/stores/grocery/nv/las-vegas/w-warm-springs-rd-and-s-durango-dr/706/00315",
     streetAddress: "8525 W Warm Springs Rd",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
     postalCode: "89113",
-    note: "Full-service grocery at the Rhodes Ranch / Warm Springs corridor—confirm hours on smithsfoodanddrug.com.",
+    note: "Full-service grocery at the Warm Springs corridor near Rhodes Ranch.",
   },
   {
     name: "St. Rose Dominican Hospital — San Martín Campus",
     category: "healthcare",
     schemaType: "Hospital",
+    sourceUrl:
+      "https://locations.dignityhealth.org/dignity-health-st-rose-dominican-hospital-san-martin-campus-las-",
     streetAddress: "8280 W Warm Springs Rd",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
@@ -160,40 +167,45 @@ export const curatedAmenities: CuratedAmenity[] = [
     name: "Red Ridge Park",
     category: "parks",
     schemaType: "Park",
-    streetAddress: "2005 Red Ridge Dr",
+    sourceUrl: "https://parkslocator.clarkcountynv.gov/Search/ParkDetail?parkId=75",
+    streetAddress: "7027 S El Capitan Way",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
-    postalCode: "89147",
+    postalCode: "89148",
+    note: "Clark County park with splash pad, disc golf, and ball fields.",
   },
   {
-    name: "Wet'n'Wild Las Vegas",
+    name: "Cowabunga Canyon Waterpark",
     category: "parks",
     schemaType: "AmusementPark",
+    sourceUrl: "https://cowabungavegas.com/canyon/hours-and-location/",
     streetAddress: "7055 S Fort Apache Rd",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
     postalCode: "89148",
-    note: "Regional water park southwest of Rhodes Ranch.",
+    note: "Regional water park southwest of Rhodes Ranch (formerly Wet’n’Wild Las Vegas).",
   },
   {
     name: "Downtown Summerlin",
     category: "shopping",
     schemaType: "ShoppingCenter",
+    sourceUrl: "https://summerlin.com/experience/directory/",
     streetAddress: "1980 Festival Plaza Dr",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
     postalCode: "89135",
-    note: "Major shopping and dining cluster northwest of Rhodes Ranch.",
+    note: "Retail and dining cluster northwest of Rhodes Ranch.",
   },
   {
     name: "Harry Reid International Airport",
     category: "parking",
     schemaType: "Airport",
+    sourceUrl: "https://www.harryreidairport.com/",
     streetAddress: "5757 Wayne Newton Blvd",
     addressLocality: "Las Vegas",
     addressRegion: "NV",
     postalCode: "89119",
-    note: "Primary Las Vegas valley airport; drive time varies with traffic (often roughly 20–30 minutes from Rhodes Ranch, approximate).",
+    note: "Primary Las Vegas valley airport; drive time varies with traffic (approximate).",
   },
 ];
 

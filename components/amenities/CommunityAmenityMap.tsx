@@ -1,14 +1,20 @@
 "use client";
 
-import { startTransition, useCallback, useEffect, useRef, useState } from "react";
-import { CuratedAmenityList } from "@/components/amenities/CuratedAmenityList";
-import { publicEnv } from "@/lib/env";
 import {
-  loadGoogleMapsJs,
-  type GoogleMapsWindow,
-  type GoogleMarker,
-  type NearbyPlaceResult,
-} from "@/lib/google-maps-js";
+  startTransition,
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
+import { CuratedAmenityList } from "@/components/amenities/CuratedAmenityList";
+import {
+  placeToAmenityMapPlace,
+  searchCategory,
+  type AmenityMapPlace,
+} from "@/lib/amenity-places-search";
+import { loadGoogleMaps, mapsAuthFailed } from "@/lib/google-maps-loader";
 import {
   amenityCategories,
   googleMapsEmbedFallbackUrl,
@@ -17,146 +23,85 @@ import {
 } from "@/lib/rhodes-ranch-community";
 
 const MAP_HEIGHT_CLASS = "min-h-[22rem] h-[28rem] sm:h-[32rem]";
-const SEARCH_RADIUS_M = 8000;
-
-/** Opaque handle returned by `google.maps.Map` — typed loosely to avoid bundling @types/google.maps. */
-type GoogleMapHandle = object;
-type GoogleInfoWindowHandle = {
-  setContent: (html: string) => void;
-  open: (opts: { map: GoogleMapHandle; anchor?: GoogleMarker }) => void;
-};
 
 type CommunityAmenityMapProps = {
   defaultCategory?: AmenityCategoryId;
   showCategoryFilters?: boolean;
-  /** Show curated list beside/below fallback */
   showCuratedBesideFallback?: boolean;
   mapAriaLabel?: string;
+  /** Pass from a Server Component so Next inlines NEXT_PUBLIC_* at build time. */
+  googleMapsApiKey?: string;
+  googleMapsMapId?: string;
 };
 
-function escapeHtml(text: string): string {
-  return text
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;");
+function resolveClientMapsApiKey(prop?: string): string | undefined {
+  const fromProp = prop?.trim();
+  if (fromProp) return fromProp;
+  const literal = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  if (typeof literal === "string" && literal.trim() !== "") return literal.trim();
+  return undefined;
 }
 
-function infoWindowHtml(place: NearbyPlaceResult): string {
-  const rating =
-    place.rating != null ? `<p style="margin:4px 0 0;font-size:13px">Rating: ${place.rating}</p>` : "";
-  const address = place.address
-    ? `<p style="margin:4px 0 0;font-size:13px;color:#444">${escapeHtml(place.address)}</p>`
-    : "";
-  const dirUrl = `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`;
-  return `<div style="max-width:220px;padding:4px 2px">
-    <strong style="font-size:14px">${escapeHtml(place.name)}</strong>
-    ${rating}
-    ${address}
-    <p style="margin:8px 0 0"><a href="${dirUrl}" target="_blank" rel="noopener noreferrer">Directions</a></p>
-  </div>`;
+function resolveClientMapsMapId(prop?: string): string | undefined {
+  const fromProp = prop?.trim();
+  if (fromProp) return fromProp;
+  const literal = process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID;
+  if (typeof literal === "string" && literal.trim() !== "") return literal.trim();
+  return undefined;
 }
 
-function communityMarkerHtml(): string {
-  return `<div style="max-width:220px;padding:4px 2px">
-    <strong style="font-size:14px">${escapeHtml(rhodesRanchCommunity.name)}</strong>
-    <p style="margin:4px 0 0;font-size:13px;color:#444">Guard-gated master-planned community — ${escapeHtml(rhodesRanchCommunity.locality)}, ${escapeHtml(rhodesRanchCommunity.city)}</p>
-  </div>`;
-}
+function buildInfoWindowContent(place: AmenityMapPlace): HTMLElement {
+  const root = document.createElement("div");
+  root.style.maxWidth = "220px";
+  root.style.padding = "4px 2px";
 
-async function searchNearbyPlaces(
-  categoryId: AmenityCategoryId,
-  center: { lat: number; lng: number },
-  map: GoogleMapHandle,
-): Promise<NearbyPlaceResult[]> {
-  const w = window as GoogleMapsWindow;
-  const g = w.google?.maps;
-  if (!g) return [];
+  const title = document.createElement("strong");
+  title.style.fontSize = "14px";
+  title.textContent = place.name;
+  root.appendChild(title);
 
-  const category = amenityCategories.find((c) => c.id === categoryId);
-  if (!category) return [];
-
-  const primaryType = category.primaryTypes[0];
-
-  try {
-    const lib = (await g.importLibrary("places")) as {
-      Place?: {
-        searchNearby: (req: Record<string, unknown>) => Promise<{
-          places?: Array<{
-            displayName?: string;
-            location?: { lat: () => number; lng: () => number };
-            formattedAddress?: string;
-            rating?: number;
-          }>;
-        }>;
-      };
-    };
-    const Place = lib.Place;
-    if (Place?.searchNearby) {
-      const { places } = await Place.searchNearby({
-        fields: ["displayName", "location", "formattedAddress", "rating"],
-        locationRestriction: {
-          center,
-          radius: SEARCH_RADIUS_M,
-        },
-        includedPrimaryTypes: category.primaryTypes,
-        maxResultCount: 20,
-      });
-      if (places?.length) {
-        const out: NearbyPlaceResult[] = [];
-        for (const p of places) {
-          const lat = p.location?.lat();
-          const lng = p.location?.lng();
-          if (lat == null || lng == null || !p.displayName) continue;
-          out.push({
-            name: p.displayName,
-            lat,
-            lng,
-            address: p.formattedAddress,
-            rating: p.rating,
-          });
-        }
-        return out;
-      }
-    }
-  } catch {
-    /* fall through to legacy PlacesService */
+  if (place.address) {
+    const addr = document.createElement("p");
+    addr.style.margin = "4px 0 0";
+    addr.style.fontSize = "13px";
+    addr.style.color = "#444";
+    addr.textContent = place.address;
+    root.appendChild(addr);
   }
 
-  const placesService = g.places?.PlacesService;
-  const statusOk = g.places?.PlacesServiceStatus?.OK ?? "OK";
-  if (!placesService) return [];
+  const link = document.createElement("a");
+  link.style.marginTop = "8px";
+  link.style.display = "inline-block";
+  link.target = "_blank";
+  link.rel = "noopener noreferrer";
+  link.textContent = "Directions";
+  const dest =
+    place.mapsUri ??
+    `https://www.google.com/maps/dir/?api=1&destination=${place.lat},${place.lng}`;
+  link.href = dest;
+  root.appendChild(link);
 
-  return new Promise((resolve) => {
-    const service = new placesService(map as never);
-    service.nearbySearch(
-      {
-        location: new g.LatLng(center.lat, center.lng),
-        radius: SEARCH_RADIUS_M,
-        type: primaryType,
-      },
-      (results, status) => {
-        if (status !== statusOk || !results?.length) {
-          resolve([]);
-          return;
-        }
-        const mapped: NearbyPlaceResult[] = [];
-        for (const r of results) {
-          const lat = r.geometry?.location?.lat();
-          const lng = r.geometry?.location?.lng();
-          if (lat == null || lng == null || !r.name) continue;
-          mapped.push({
-            name: r.name,
-            lat,
-            lng,
-            address: r.vicinity ?? r.formatted_address,
-            rating: r.rating,
-          });
-        }
-        resolve(mapped);
-      },
-    );
-  });
+  return root;
+}
+
+function buildCommunityInfoWindowContent(): HTMLElement {
+  const root = document.createElement("div");
+  root.style.maxWidth = "220px";
+  root.style.padding = "4px 2px";
+
+  const title = document.createElement("strong");
+  title.style.fontSize = "14px";
+  title.textContent = rhodesRanchCommunity.name;
+  root.appendChild(title);
+
+  const body = document.createElement("p");
+  body.style.margin = "4px 0 0";
+  body.style.fontSize = "13px";
+  body.style.color = "#444";
+  body.textContent = `Guard-gated master-planned community — ${rhodesRanchCommunity.locality}, ${rhodesRanchCommunity.city}`;
+  root.appendChild(body);
+
+  return root;
 }
 
 export function CommunityAmenityMap({
@@ -164,26 +109,57 @@ export function CommunityAmenityMap({
   showCategoryFilters = true,
   showCuratedBesideFallback = true,
   mapAriaLabel = "Interactive map of amenities near Rhodes Ranch",
+  googleMapsApiKey,
+  googleMapsMapId,
 }: CommunityAmenityMapProps) {
-  const apiKey = publicEnv.googleMapsApiKey;
-  const mapId = publicEnv.googleMapsMapId;
-  const center = {
-    lat: rhodesRanchCommunity.center.latitude,
-    lng: rhodesRanchCommunity.center.longitude,
-  };
+  const apiKey = resolveClientMapsApiKey(googleMapsApiKey);
+  const mapId = resolveClientMapsMapId(googleMapsMapId);
+  const center = useMemo<google.maps.LatLngLiteral>(
+    () => ({
+      lat: rhodesRanchCommunity.center.latitude,
+      lng: rhodesRanchCommunity.center.longitude,
+    }),
+    [],
+  );
 
   const rootRef = useRef<HTMLDivElement>(null);
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<GoogleMapHandle | null>(null);
-  const markersRef = useRef<GoogleMarker[]>([]);
-  const communityMarkerRef = useRef<GoogleMarker | null>(null);
-  const infoWindowRef = useRef<GoogleInfoWindowHandle | null>(null);
+  const mapRef = useRef<google.maps.Map | null>(null);
+  const markersRef = useRef<google.maps.Marker[]>([]);
+  const communityMarkerRef = useRef<google.maps.Marker | null>(null);
+  const infoWindowRef = useRef<google.maps.InfoWindow | null>(null);
 
   const [inView, setInView] = useState(false);
   const [activeCategory, setActiveCategory] = useState<AmenityCategoryId>(defaultCategory);
   const activeCategoryRef = useRef<AmenityCategoryId>(defaultCategory);
-  const [loadFailed, setLoadFailed] = useState(false);
+  const [useFallback, setUseFallback] = useState(() => mapsAuthFailed || !apiKey);
+  const [showCuratedList, setShowCuratedList] = useState(false);
   const [statusMessage, setStatusMessage] = useState<string | null>(null);
+
+  const enterFallback = useCallback(() => {
+    if (mapRef.current) {
+      mapRef.current = null;
+    }
+    for (const m of markersRef.current) {
+      m.setMap(null);
+    }
+    markersRef.current = [];
+    communityMarkerRef.current?.setMap(null);
+    communityMarkerRef.current = null;
+    infoWindowRef.current?.close();
+    infoWindowRef.current = null;
+    if (mapContainerRef.current) {
+      mapContainerRef.current.replaceChildren();
+    }
+    setUseFallback(true);
+    setShowCuratedList(true);
+  }, []);
+
+  useEffect(() => {
+    const onAuthFailure = () => enterFallback();
+    window.addEventListener("gmaps:auth-failure", onAuthFailure);
+    return () => window.removeEventListener("gmaps:auth-failure", onAuthFailure);
+  }, [enterFallback]);
 
   useEffect(() => {
     const root = rootRef.current;
@@ -215,38 +191,50 @@ export function CommunityAmenityMap({
   const renderPlaces = useCallback(
     async (categoryId: AmenityCategoryId) => {
       const map = mapRef.current;
-      const w = window as GoogleMapsWindow;
-      const g = w.google?.maps;
-      if (!map || !g) return;
+      if (!map || useFallback) return;
+
+      const category = amenityCategories.find((c) => c.id === categoryId);
+      if (!category) return;
 
       clearMarkers();
+      setShowCuratedList(false);
       setStatusMessage("Loading nearby places…");
 
-      const places = await searchNearbyPlaces(categoryId, center, map);
-      const infoWindow: GoogleInfoWindowHandle =
-        infoWindowRef.current ?? (new g.InfoWindow() as GoogleInfoWindowHandle);
-      infoWindowRef.current = infoWindow;
+      try {
+        const placesRaw = await searchCategory(center, categoryId, category.primaryTypes);
+        const places = placesRaw
+          .map(placeToAmenityMapPlace)
+          .filter((p): p is AmenityMapPlace => p != null);
 
-      for (const place of places) {
-        const marker = new g.Marker({
-          position: { lat: place.lat, lng: place.lng },
-          map,
-          title: place.name,
-        });
-        marker.addListener("click", () => {
-          infoWindow.setContent(infoWindowHtml(place));
-          infoWindow.open({ map, anchor: marker });
-        });
-        markersRef.current.push(marker);
-      }
+        const infoWindow =
+          infoWindowRef.current ?? new google.maps.InfoWindow();
+        infoWindowRef.current = infoWindow;
 
-      if (places.length === 0) {
-        setStatusMessage("No results for this filter—try another category or see the curated list.");
-      } else {
-        setStatusMessage(`${places.length} places shown (verify hours with each business).`);
+        for (const place of places) {
+          const marker = new google.maps.Marker({
+            position: { lat: place.lat, lng: place.lng },
+            map,
+            title: place.name,
+          });
+          marker.addListener("click", () => {
+            infoWindow.setContent(buildInfoWindowContent(place));
+            infoWindow.open({ map, anchor: marker });
+          });
+          markersRef.current.push(marker);
+        }
+
+        if (places.length === 0) {
+          setShowCuratedList(true);
+          setStatusMessage("Featured places near Rhodes Ranch for this category.");
+        } else {
+          setStatusMessage(`${places.length} places shown (confirm hours with each business).`);
+        }
+      } catch {
+        setShowCuratedList(true);
+        setStatusMessage("Featured places near Rhodes Ranch for this category.");
       }
     },
-    [center.lat, center.lng, clearMarkers],
+    [center, clearMarkers, useFallback],
   );
 
   const renderPlacesRef = useRef(renderPlaces);
@@ -260,23 +248,21 @@ export function CommunityAmenityMap({
   }, [renderPlaces]);
 
   useEffect(() => {
-    if (!inView || !apiKey || loadFailed) return;
+    if (!inView || !apiKey || useFallback || mapsAuthFailed) return;
     const container = mapContainerRef.current;
     if (!container || mapRef.current) return;
 
     let cancelled = false;
 
-    loadGoogleMapsJs(apiKey, ["places"])
-      .then(() => {
-        if (cancelled) return;
-        const w = window as GoogleMapsWindow;
-        const g = w.google?.maps;
-        if (!g || !mapContainerRef.current) {
-          setLoadFailed(true);
+    loadGoogleMaps(apiKey)
+      .then(async () => {
+        if (cancelled || mapsAuthFailed) return;
+        if (!mapContainerRef.current) {
+          enterFallback();
           return;
         }
 
-        const mapOptions: Record<string, unknown> = {
+        const mapOptions: google.maps.MapOptions = {
           center,
           zoom: 13,
           mapTypeControl: false,
@@ -287,47 +273,50 @@ export function CommunityAmenityMap({
           mapOptions.mapId = mapId;
         }
 
-        const map = new g.Map(mapContainerRef.current, mapOptions);
+        const map = new google.maps.Map(mapContainerRef.current, mapOptions);
         mapRef.current = map;
 
-        const communityMarker = new g.Marker({
+        const communityMarker = new google.maps.Marker({
           position: center,
           map,
           title: rhodesRanchCommunity.name,
           zIndex: 1000,
         });
         communityMarker.addListener("click", () => {
-          const iw: GoogleInfoWindowHandle =
-            infoWindowRef.current ?? (new g.InfoWindow() as GoogleInfoWindowHandle);
+          const iw = infoWindowRef.current ?? new google.maps.InfoWindow();
           infoWindowRef.current = iw;
-          iw.setContent(communityMarkerHtml());
+          iw.setContent(buildCommunityInfoWindowContent());
           iw.open({ map, anchor: communityMarker });
         });
         communityMarkerRef.current = communityMarker;
 
-        void renderPlacesRef.current(activeCategoryRef.current);
+        await renderPlacesRef.current(activeCategoryRef.current);
       })
       .catch(() => {
-        if (!cancelled) setLoadFailed(true);
+        if (!cancelled) enterFallback();
       });
 
     return () => {
       cancelled = true;
     };
-  }, [apiKey, center.lat, center.lng, inView, loadFailed, mapId]);
+  }, [apiKey, center, enterFallback, inView, mapId, useFallback]);
 
   const selectCategory = (categoryId: AmenityCategoryId) => {
     setActiveCategory(categoryId);
+    if (useFallback) {
+      setShowCuratedList(true);
+      return;
+    }
     if (mapRef.current) {
       void renderPlaces(categoryId);
     }
   };
 
-  const useFallback = !apiKey || loadFailed;
+  const embedUrl = googleMapsEmbedFallbackUrl();
 
   return (
     <div ref={rootRef} className="space-y-4">
-      {showCategoryFilters && !useFallback ? (
+      {showCategoryFilters ? (
         <div
           className="flex flex-wrap gap-2"
           role="toolbar"
@@ -362,7 +351,7 @@ export function CommunityAmenityMap({
           >
             <iframe
               title="Map of Rhodes Ranch, Spring Valley, Las Vegas"
-              src={googleMapsEmbedFallbackUrl()}
+              src={embedUrl}
               className="h-full w-full border-0"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
@@ -372,14 +361,12 @@ export function CommunityAmenityMap({
           {showCuratedBesideFallback ? (
             <div className="rounded-2xl border border-stone-200/90 bg-white p-5 shadow-sm ring-1 ring-stone-900/5">
               <h3 className="font-display text-lg font-semibold text-emerald-950">
-                Curated nearby places
+                Featured places near {rhodesRanchCommunity.name}
               </h3>
               <p className="mt-1 text-sm text-stone-600">
-                Shown when the interactive map API key is not set. Add{" "}
-                <code className="text-xs">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> in Vercel for live
-                Places search.
+                Curated anchors buyers ask about—confirm hours with each business.
               </p>
-              <CuratedAmenityList className="mt-4" compact />
+              <CuratedAmenityList className="mt-4" compact categoryFilter={activeCategory} />
             </div>
           ) : null}
         </div>
@@ -402,6 +389,14 @@ export function CommunityAmenityMap({
           </div>
           {statusMessage ? (
             <p className="text-sm text-stone-600" aria-live="polite">{statusMessage}</p>
+          ) : null}
+          {showCuratedList ? (
+            <div className="rounded-2xl border border-stone-200/90 bg-white p-5 shadow-sm ring-1 ring-stone-900/5">
+              <h3 className="font-display text-lg font-semibold text-emerald-950">
+                Featured places near {rhodesRanchCommunity.name}
+              </h3>
+              <CuratedAmenityList className="mt-4" compact categoryFilter={activeCategory} />
+            </div>
           ) : null}
         </>
       )}

@@ -68,7 +68,7 @@ export function CuratedAmenityList({
                     {place.note ? (
                       <p className="mt-1 text-sm text-stone-600">{place.note}</p>
                     ) : null}
-                    <p className="mt-2">
+                    <p className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                       <a
                         href={directionsHrefForAddress(address)}
                         className="text-sm font-semibold text-emerald-900 underline-offset-2 hover:underline"
@@ -76,6 +76,14 @@ export function CuratedAmenityList({
                         rel="noopener noreferrer"
                       >
                         Directions in Google Maps
+                      </a>
+                      <a
+                        href={place.sourceUrl}
+                        className="text-sm font-semibold text-stone-700 underline-offset-2 hover:underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Official site
                       </a>
                     </p>
                   </li>

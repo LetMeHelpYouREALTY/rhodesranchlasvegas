@@ -111,7 +111,11 @@ export default function NearbyAmenitiesPage() {
           confirm hours and fees with each business.
         </p>
         <div className="mt-6">
-          <CommunityAmenityMap defaultCategory="golf" />
+          <CommunityAmenityMap
+            defaultCategory="golf"
+            googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY}
+            googleMapsMapId={process.env.NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID}
+          />
         </div>
       </section>
 
@@ -152,9 +156,9 @@ export default function NearbyAmenitiesPage() {
           <p className="mt-4 leading-relaxed">
             <strong>Rhodes Ranch Golf Club</strong> (20 E Rhodes Ranch Pkwy) anchors the community
             with an 18-hole Ted Robinson layout. Residents also use the on-site recreation center,
-            trails, and pools (access rules set by the association). Nearby public parks include{" "}
-            <strong>Red Ridge Park</strong> (2005 Red Ridge Dr). Regional summer options include{" "}
-            <strong>Wet&apos;n&apos;Wild Las Vegas</strong> on S Fort Apache Rd.
+            trails, and pools (access rules set by the association).             Nearby public parks include{" "}
+            <strong>Red Ridge Park</strong> (7027 S El Capitan Way). Regional summer options include{" "}
+            <strong>Cowabunga Canyon Waterpark</strong> on S Fort Apache Rd.
           </p>
         </section>
 
@@ -177,8 +181,8 @@ export default function NearbyAmenitiesPage() {
           <p className="mt-4 leading-relaxed">
             Day-to-day retail lines Fort Apache, Rainbow, and Charleston west of the 215 Beltway.{" "}
             <strong>Downtown Summerlin</strong> adds department stores and specialty retail roughly
-            15–20 minutes north in typical conditions. The map&apos;s Shopping filter surfaces malls
-            and major centers dynamically when the Google Maps API key is configured.
+            15–20 minutes north in typical conditions. Use the map&apos;s Shopping filter to explore
+            major centers near Rhodes Ranch.
           </p>
         </section>
 
