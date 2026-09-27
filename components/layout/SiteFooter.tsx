@@ -97,6 +97,11 @@ export function SiteFooter({ className }: { className?: string }) {
               </Link>
             </li>
             <li>
+              <Link href="/nearby-amenities" className="text-stone-300 hover:text-white">
+                Nearby amenities map (Rhodes Ranch)
+              </Link>
+            </li>
+            <li>
               <Link href="/open-houses" className="text-stone-300 hover:text-white">
                 Open houses by day
               </Link>

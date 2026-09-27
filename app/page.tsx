@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { NearbyAmenitiesSection } from "@/components/amenities/NearbyAmenitiesSection";
 import { OpenHousesMapSection } from "@/components/sections/OpenHousesMapSection";
 import { rhodesRanchFaq } from "@/lib/faq-rhodes-ranch";
 import { publicEnv } from "@/lib/env";
@@ -139,6 +140,8 @@ export default function HomePage() {
       </section>
 
       <OpenHousesMapSection />
+
+      <NearbyAmenitiesSection defaultCategory="golf" />
 
       <nav
         className="mt-8 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-center text-sm text-stone-600"

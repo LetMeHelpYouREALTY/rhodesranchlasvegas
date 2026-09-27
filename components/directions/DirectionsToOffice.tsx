@@ -2,7 +2,7 @@
 
 import { useCallback, useEffect, useId, useRef, useState } from "react";
 import { SiteImage } from "@/components/media/SiteImage";
-import { publicEnv } from "@/lib/env";
+import { loadGoogleMaps } from "@/lib/google-maps-loader";
 import {
   googleMapsDirectionsWebUrl,
   type GoogleMapsWebTravelMode,
@@ -26,30 +26,10 @@ const TRAVEL_MODES: {
   { id: "BICYCLING", label: "Bicycling", web: "bicycling" },
 ];
 
-function loadMapsScript(apiKey: string): Promise<void> {
-  if (typeof window === "undefined") return Promise.resolve();
-  const w = window as unknown as { google?: { maps?: unknown } };
-  if (w.google?.maps) return Promise.resolve();
-  return new Promise((resolve, reject) => {
-    const id = "google-maps-js";
-    if (document.getElementById(id)) {
-      const check = () => {
-        const ww = window as unknown as { google?: { maps?: unknown } };
-        if (ww.google?.maps) resolve();
-        else setTimeout(check, 50);
-      };
-      check();
-      return;
-    }
-    const s = document.createElement("script");
-    s.id = id;
-    s.async = true;
-    s.defer = true;
-    s.src = `https://maps.googleapis.com/maps/api/js?key=${encodeURIComponent(apiKey)}`;
-    s.onload = () => resolve();
-    s.onerror = () => reject(new Error("Could not load Google Maps"));
-    document.head.appendChild(s);
-  });
+function resolveMapsApiKey(): string | undefined {
+  const literal = process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY;
+  if (typeof literal === "string" && literal.trim() !== "") return literal.trim();
+  return undefined;
 }
 
 function DirectionsFallback() {
@@ -72,7 +52,7 @@ function DirectionsFallback() {
 }
 
 export function DirectionsToOffice() {
-  const apiKey = publicEnv.googleMapsApiKey;
+  const apiKey = resolveMapsApiKey();
   const baseId = useId();
   const inputId = `${baseId}-origin`;
   const mapRef = useRef<HTMLDivElement | null>(null);
@@ -91,7 +71,7 @@ export function DirectionsToOffice() {
     let cancelled = false;
     (async () => {
       try {
-        await loadMapsScript(apiKey);
+        await loadGoogleMaps(apiKey);
         if (cancelled || !mapRef.current) return;
         const w = window as unknown as {
           google: {
@@ -205,7 +185,7 @@ export function DirectionsToOffice() {
       <p className="mt-2 max-w-3xl text-sm leading-relaxed text-stone-600">
         {apiKey
           ? "Enter where you are starting from and pick a travel mode. Estimated time and distance appear from Google’s Directions service when a route is available."
-          : "Open turn-by-turn directions in Google Maps for our office. Pick a mode below; in Maps, add your starting point to see travel time. To show routes on this page, add a Maps JavaScript API key (see .env.example)."}
+          : "Open turn-by-turn directions in Google Maps for our office. Pick a mode below; in Maps, add your starting point to see travel time."}
       </p>
       {apiKey && !mapReady && !error && (
         <p className="mt-3 text-sm text-stone-500" aria-live="polite">

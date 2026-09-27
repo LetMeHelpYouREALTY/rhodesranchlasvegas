@@ -7,6 +7,7 @@ const nav = [
   { href: "/rhodes-ranch-las-vegas", label: "Rhodes Ranch" },
   { href: "/buyers", label: "Buyers" },
   { href: "/rhodes-ranch-lifestyle", label: "Lifestyle" },
+  { href: "/nearby-amenities", label: "Nearby" },
   { href: "/open-houses", label: "Open houses" },
   { href: "/map", label: "Area map" },
   { href: "/locations", label: "Locations" },

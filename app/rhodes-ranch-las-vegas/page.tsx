@@ -4,6 +4,7 @@ import { DirectionsToOfficeDynamic } from "@/components/directions/DirectionsToO
 import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
+import { NearbyAmenitiesSection } from "@/components/amenities/NearbyAmenitiesSection";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { MapEmbed } from "@/components/sections/MapEmbed";
@@ -136,6 +137,9 @@ export default function RhodesRanchLasVegasHubPage() {
         listingMountStrategy="visible"
         listingIntro="Filter by price, beds, and baths for Rhodes Ranch and nearby Spring Valley—same MLS-backed search we use to prep private tours and offer strategy."
       />
+
+      <NearbyAmenitiesSection className="mt-10" defaultCategory="grocery" />
+
       <section
         className="mt-12 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/35 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
         aria-labelledby="path-heading"

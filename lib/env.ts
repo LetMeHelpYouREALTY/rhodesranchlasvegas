@@ -405,6 +405,13 @@ export const publicEnv = {
     return raw;
   })(),
 
+  /** Optional Map ID for Advanced Markers (Cloud Console → Map Management). Works without it. */
+  googleMapsMapId: ((): string | undefined => {
+    const raw = envOptional("NEXT_PUBLIC_GOOGLE_MAPS_MAP_ID")?.trim();
+    if (!raw || raw.length > 128) return undefined;
+    return raw;
+  })(),
+
   /**
    * Google Maps / Business Profile public place or short link (reviews + pin).
    * Paste from GBP “Share” (https://maps.google.com/..., https://www.google.com/maps/place/..., or https://g.page/...).
