@@ -100,6 +100,7 @@ export default function RootLayout({
         <JsonLd data={websiteJsonLd()} />
         <SiteHeader />
         <div className="flex-1">{children}</div>
+        <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <SiteFooter />
         <CalendlyBadge />
       </body>

@@ -15,7 +15,7 @@ const csp = [
   "font-src 'self' data: https://fonts.gstatic.com https://em.realscout.com https://www.realscout.com",
   "media-src 'self' data: blob: https:",
   "worker-src 'self' blob: https://em.realscout.com",
-  "connect-src 'self' https://www.realscout.com https://em.realscout.com wss://www.realscout.com wss://em.realscout.com https://cdn.repliers.io https://*.repliers.io https://calendly.com https://*.calendly.com https://api.calendly.com https://www.google-analytics.com https://region1.google-analytics.com https://region1.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://www.googletagmanager.com https://maps.googleapis.com https://*.googleapis.com https://*.s3.amazonaws.com https://s3.amazonaws.com https://*.cloudfront.net https://*.amazonaws.com",
+  "connect-src 'self' https://www.realscout.com https://em.realscout.com wss://www.realscout.com wss://em.realscout.com https://cdn.repliers.io https://*.repliers.io https://calendly.com https://*.calendly.com https://api.calendly.com https://www.google-analytics.com https://region1.google-analytics.com https://region1.analytics.google.com https://analytics.google.com https://stats.g.doubleclick.net https://www.google.com https://googleads.g.doubleclick.net https://www.googleadservices.com https://www.googletagmanager.com https://maps.googleapis.com https://*.googleapis.com https://*.s3.amazonaws.com https://s3.amazonaws.com https://*.cloudfront.net https://*.amazonaws.com",
   "frame-src 'self' https://maps.google.com https://www.google.com https://www.google.com/maps https://www.realscout.com https://em.realscout.com https://calendly.com https://*.calendly.com",
   "object-src 'none'",
   "upgrade-insecure-requests",
