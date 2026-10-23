@@ -27,8 +27,6 @@ export function SiteFooter({ className }: { className?: string }) {
           <p className="mt-3 font-display text-lg font-semibold text-stone-50">
             {siteContact.businessName}
           </p>
-          <p className="text-sm text-stone-400">{siteContact.legalBrokerage}</p>
-          <p className="mt-2 text-sm text-stone-400">Nevada License {siteContact.license}</p>
           <p className="mt-3 text-sm leading-relaxed text-stone-400">
             {siteContact.address.streetAddress}
             <br />
@@ -192,8 +190,10 @@ export function SiteFooter({ className }: { className?: string }) {
           listing tools.
         </p>
         <p className="mx-auto mt-2 max-w-4xl leading-relaxed text-stone-400">
-          © 2026 Berkshire Hathaway HomeServices Nevada Properties - Rhodes Ranch Las Vegas Real Estate
-          Division. Comprehensive Real Estate Services by Dr. Jan Duffy S.0197614. All rights reserved.
+          © 2026 Rhodes Ranch Las Vegas Real Estate Division. Comprehensive Real Estate Services by
+          Dr. Jan Duffy. All rights reserved.
+          <br />
+          Berkshire Hathaway HomeServices Nevada Properties since September 2008 · License S.0197614.LLC
         </p>
       </div>
     </footer>

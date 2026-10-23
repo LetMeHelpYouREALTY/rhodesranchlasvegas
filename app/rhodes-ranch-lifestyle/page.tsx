@@ -16,7 +16,7 @@ import { siteContact } from "@/lib/site-contact";
 export const metadata: Metadata = {
   title:
     "Rhodes Ranch Community Guide: Golf, Amenities, and Southwest Las Vegas Lifestyle | 89148",
-  description: `Guard-gated Rhodes Ranch (89148): Ted Robinson golf, recreation center, trails, and resort-style living southwest of the Strip. Community context for buyers and sellers—${siteContact.agentName}, ${siteContact.legalBrokerage}. ${metaAddressOnly}`,
+  description: `Guard-gated Rhodes Ranch (89148): Ted Robinson golf, recreation center, trails, and resort-style living southwest of the Strip. Community context for buyers and sellers—${siteContact.agentName}. ${metaAddressOnly}`,
   alternates: { canonical: "/rhodes-ranch-lifestyle" },
   ...pageSocialMetadata("/rhodes-ranch-lifestyle", {
     title: "Rhodes Ranch community guide: golf, amenities, and Las Vegas 89148 lifestyle",

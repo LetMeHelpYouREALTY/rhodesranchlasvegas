@@ -65,7 +65,7 @@ export default function HomePage() {
           to major roads, shopping, and schools.{" "}
           <strong>{siteContact.agentName}</strong> ({siteContact.agentTitle}) and{" "}
           <strong>{siteContact.secondaryContactName}</strong> ({siteContact.secondaryContactTitle})
-          work with {siteContact.legalBrokerage} on listings, showings, and strategy for{" "}
+          help with listings, showings, and strategy for{" "}
           {siteContact.address.postalCode}.
         </p>
         <GbpActionBar />

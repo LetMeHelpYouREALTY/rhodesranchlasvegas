@@ -7,7 +7,7 @@ import { siteContact } from "@/lib/site-contact";
 const baseUrl = new URL(siteContact.siteUrl);
 
 /** Address + brokerage for meta descriptions (avoids repeating stiff “Office:” in every snippet). */
-export const metaDescriptionTail = `${siteContact.fullAddressLine}. ${siteContact.legalBrokerage}.`;
+export const metaDescriptionTail = `${siteContact.fullAddressLine}.`;
 
 /** Single-line address with period (when brokerage is already mentioned in the same sentence). */
 export const metaAddressOnly = `${siteContact.fullAddressLine}.`;

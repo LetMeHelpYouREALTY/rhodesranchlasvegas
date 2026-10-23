@@ -102,7 +102,7 @@ export default function LocationsPage() {
           className="mt-4 max-w-xl"
         />
         <p className="mt-2 max-w-2xl text-sm text-stone-600">
-          Door-to-door map for {siteContact.fullAddressLine} ({siteContact.legalBrokerage}). Use
+          Door-to-door map for {siteContact.fullAddressLine}. Use
           multi-mode directions below when you are ready to drive.
         </p>
         <div className="mt-4 max-w-3xl">

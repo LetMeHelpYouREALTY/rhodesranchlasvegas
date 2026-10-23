@@ -15,7 +15,7 @@ import { siteContact } from "@/lib/site-contact";
 
 export const metadata: Metadata = {
   title: "Rhodes Ranch and Spring Valley Area Map | Las Vegas 89148",
-  description: `Interactive map of Rhodes Ranch and Spring Valley (${siteContact.address.postalCode})—orientation for buyers and sellers. ${metaAddressOnly} ${siteContact.agentName}, ${siteContact.agentTitle}. ${siteContact.legalBrokerage}.`,
+  description: `Interactive map of Rhodes Ranch and Spring Valley (${siteContact.address.postalCode})—orientation for buyers and sellers. ${metaAddressOnly} ${siteContact.agentName}, ${siteContact.agentTitle}.`,
   alternates: { canonical: "/map" },
   ...pageSocialMetadata("/map", {
     title: "Rhodes Ranch and Spring Valley map | Las Vegas 89148",

@@ -53,7 +53,7 @@ export const SITE_IMAGES = {
     heading: "Rhodes Ranch and Las Vegas open houses by day",
   },
   "hero-office": {
-    alt: "Berkshire Hathaway HomeServices Nevada Properties office exterior at 7272 S El Capitan Way, Las Vegas",
+    alt: "Real estate office exterior at 7272 S El Capitan Way, Las Vegas",
     width: 1280,
     height: 720,
     heading: "Office and contact",

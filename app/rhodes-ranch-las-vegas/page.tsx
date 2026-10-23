@@ -23,7 +23,7 @@ const canonicalPath = "/rhodes-ranch-las-vegas";
 
 export const metadata: Metadata = {
   title: "Rhodes Ranch Las Vegas homes for sale & local real estate | 89148",
-  description: `Rhodes Ranch Las Vegas (89148) real estate: guard-gated golf community in Spring Valley. ${siteContact.agentName} and ${siteContact.secondaryContactName} with ${siteContact.legalBrokerage}—search listings, plan tours, and get local guidance. ${metaAddressOnly}`,
+  description: `Rhodes Ranch Las Vegas (89148) real estate: guard-gated golf community in Spring Valley. ${siteContact.agentName} and ${siteContact.secondaryContactName}—search listings, plan tours, and get local guidance. ${metaAddressOnly}`,
   keywords: [
     "Rhodes Ranch Las Vegas",
     "Rhodes Ranch homes for sale",
@@ -56,7 +56,7 @@ export default function RhodesRanchLasVegasHubPage() {
         data={webPageJsonLd({
           path: canonicalPath,
           name: "Rhodes Ranch Las Vegas — homes, real estate, and local guidance (89148)",
-          description: `Micro-market hub for ${siteContact.serviceAreaDescription}. ${siteContact.agentName} and ${siteContact.secondaryContactName} for listings, showings, and contract strategy with ${siteContact.legalBrokerage}.`,
+          description: `Micro-market hub for ${siteContact.serviceAreaDescription}. ${siteContact.agentName} and ${siteContact.secondaryContactName} for listings, showings, and contract strategy.`,
         })}
       />
       <JsonLd data={faqPageJsonLd(rhodesRanchFaq)} />
@@ -165,7 +165,7 @@ export default function RhodesRanchLasVegasHubPage() {
           </li>
           <li>
             <strong className="text-stone-800">Sellers:</strong> prep, pricing conversation, and
-            exposure through Berkshire Hathaway HomeServices channels—ask for a consultation when
+            broad market exposure—ask for a consultation when
             you are ready to compare your home to current comps.
           </li>
           <li>
@@ -193,8 +193,7 @@ export default function RhodesRanchLasVegasHubPage() {
             <p className="mt-4 leading-relaxed text-stone-700">
               Automated estimates often miss guard-gated access, golf-course views, and upgrades.
               Pricing conversations start from current closed sales in your section—not a generic
-              valley average. {siteContact.agentName} prices and markets 89148 homes with{" "}
-              {siteContact.legalBrokerage}.
+              valley average. {siteContact.agentName} prices and markets 89148 homes.
             </p>
             <ul className="mt-4 list-disc space-y-1 pl-5 text-stone-700">
               <li>Accurate pricing based on current closed sales — not Zestimates</li>

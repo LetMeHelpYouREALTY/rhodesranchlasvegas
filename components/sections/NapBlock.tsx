@@ -36,7 +36,7 @@ export function NapBlock({ titleLevel = 3, headingId = "nap-heading" }: NapBlock
         <div>
           <dt className="font-medium text-stone-800">Name</dt>
           <dd>
-            {siteContact.businessName} — {siteContact.legalBrokerage}
+            {siteContact.businessName}
           </dd>
         </div>
         <div>
@@ -134,10 +134,6 @@ export function NapBlock({ titleLevel = 3, headingId = "nap-heading" }: NapBlock
               {siteContact.secondaryContactName} — {siteContact.secondaryContactTitle}
             </span>
           </dd>
-        </div>
-        <div>
-          <dt className="font-medium text-stone-800">License</dt>
-          <dd>{siteContact.license}</dd>
         </div>
       </dl>
     </section>

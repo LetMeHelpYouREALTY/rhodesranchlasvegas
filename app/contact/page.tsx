@@ -20,7 +20,7 @@ import { googleBusinessProfileReviewHref, googleMapsProfileHref, siteContact } f
 
 export const metadata: Metadata = {
   title: `Schedule a consultation | Contact ${siteContact.agentName} | ${siteContact.businessName} 89148`,
-  description: `Book a private 15-minute conversation with ${siteContact.agentName} or reach ${siteContact.secondaryContactName} for Rhodes Ranch Las Vegas homes. Call ${siteContact.phoneDisplay} or visit ${siteContact.fullAddressLine}. Use the calendar below. Nevada license ${siteContact.license}. ${siteContact.legalBrokerage}.`,
+  description: `Book a private 15-minute conversation with ${siteContact.agentName} or reach ${siteContact.secondaryContactName} for Rhodes Ranch Las Vegas homes. Call ${siteContact.phoneDisplay} or visit ${siteContact.fullAddressLine}. Use the calendar below.`,
   alternates: { canonical: "/contact" },
   ...pageSocialMetadata("/contact", {
     title: `Schedule with ${siteContact.agentName} | ${siteContact.businessName}`,
@@ -191,7 +191,7 @@ export default function ContactPage() {
           <h2 className="text-lg font-semibold text-emerald-950">Map and Service Area</h2>
           <SectionFigure imageId="hero-aerial-map" caption="Map and Service Area" />
           <MapEmbed
-            title={`Office map — ${siteContact.fullAddressLine} (${siteContact.legalBrokerage})`}
+            title={`Office map — ${siteContact.fullAddressLine}`}
           />
           <p className="text-sm text-slate-600">
             {siteContact.agentName} and {siteContact.secondaryContactName} serve buyers and sellers
