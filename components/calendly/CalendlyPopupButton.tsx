@@ -1,13 +1,14 @@
 "use client";
 
 import type { ComponentProps } from "react";
+import { usePathname } from "next/navigation";
 import { ensureCalendlyReady } from "@/lib/calendly-load";
-import { publicEnv } from "@/lib/env";
+import { calendlyUrlFor } from "@/lib/calendly-url";
 import { cn } from "@/lib/utils";
 
 type CalendlyPopupButtonProps = ComponentProps<"button">;
 
-/** Opens Calendly popup overlay (same event URL as inline/badge). */
+/** Opens Calendly popup overlay (event picked by page intent). */
 export function CalendlyPopupButton({
   className,
   children,
@@ -15,6 +16,7 @@ export function CalendlyPopupButton({
   onClick,
   ...rest
 }: CalendlyPopupButtonProps) {
+  const pathname = usePathname() || "/";
   return (
     <button
       {...rest}
@@ -25,7 +27,7 @@ export function CalendlyPopupButton({
         if (e.defaultPrevented) return;
         try {
           await ensureCalendlyReady();
-          window.Calendly?.initPopupWidget({ url: publicEnv.calendlyEventUrl });
+          window.Calendly?.initPopupWidget({ url: calendlyUrlFor(pathname, "popup") });
         } catch {
           // Fallback: user can still use /contact or phone.
         }

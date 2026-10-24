@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -84,6 +85,7 @@ export default function RhodesRanchHomesUnder500kPage() {
         listingIntro="Active homes near the under-$500k target, plus map filters to compare alternatives in 89148."
         listingMountStrategy="immediate"
       />
+      <CalendlyAfterListings />
       <ListingTourSection
         heading="Tour Rhodes Ranch homes in this price band"
         headingId="tour-under-500k-heading"

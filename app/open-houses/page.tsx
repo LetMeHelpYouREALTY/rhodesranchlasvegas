@@ -5,6 +5,7 @@ import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { OpenHousesMapSection } from "@/components/sections/OpenHousesMapSection";
 import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { NapBlock } from "@/components/sections/NapBlock";
@@ -76,6 +77,7 @@ export default function OpenHousesHubPage() {
         headingId="open-houses-hub-listings-heading"
         listingIntro={`Broker open house search for ${siteContact.serviceAreaDescription}—confirm times on each card, then use the map below to plan your route.`}
       />
+      <CalendlyAfterListings />
 
       <OpenHousesMapSection />
 

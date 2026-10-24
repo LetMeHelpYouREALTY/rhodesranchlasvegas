@@ -23,6 +23,7 @@ declare global {
       initBadgeWidget: (options: CalendlyBadgeOptions) => void;
       initPopupWidget: (options: CalendlyPopupOptions) => void;
       initInlineWidget: (options: CalendlyInlineOptions) => void;
+      destroyBadgeWidget?: () => void;
     };
   }
 }

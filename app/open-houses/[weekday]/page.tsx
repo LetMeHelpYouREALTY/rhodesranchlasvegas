@@ -5,6 +5,7 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { FaqSection } from "@/components/sections/FaqSection";
@@ -106,6 +107,7 @@ export default async function OpenHousesWeekdayPage({ params }: PageProps) {
         headingId={`open-house-${raw}-listings-heading`}
         listingIntro={`Broker open house search for ${label}—confirm date and time on each listing card, then use the hub map when you plan multiple stops across ${siteContact.address.postalCode}.`}
       />
+      <CalendlyAfterListings />
 
       <ListingTourSection
         heading={`Plan ${label} tours in Rhodes Ranch and 89148`}

@@ -4,6 +4,7 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
@@ -109,6 +110,7 @@ export default function RhodesRanchLifestylePage() {
         className="mt-10"
         listingIntro="Pair this community overview with live results for homes for sale—see listings near Rhodes Ranch golf, gates, and trails."
       />
+      <CalendlyAfterListings />
 
       <div className="mt-12 max-w-3xl space-y-12 text-stone-700">
         <section aria-labelledby="overview-heading">

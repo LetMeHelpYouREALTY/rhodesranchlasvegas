@@ -1,31 +1,38 @@
 "use client";
 
 import { useEffect } from "react";
+import { usePathname } from "next/navigation";
 import { ensureCalendlyReady } from "@/lib/calendly-load";
+import { calendlyUrlFor } from "@/lib/calendly-url";
 import { publicEnv } from "@/lib/env";
 
-let badgeInitPromise: Promise<void> | null = null;
-
-/** Floating Calendly badge — mount once in root layout. */
+/** Floating Calendly badge — mount once in root layout; rebuilt on route change so the booking URL matches the page. */
 export function CalendlyBadge() {
+  const pathname = usePathname() || "/";
+
   useEffect(() => {
     let cancelled = false;
 
     function scheduleInit() {
-      if (badgeInitPromise || cancelled) return;
+      if (cancelled) return;
 
-      badgeInitPromise = (async () => {
+      void (async () => {
         await ensureCalendlyReady();
         if (!window.Calendly || cancelled) return;
+        if (window.Calendly.destroyBadgeWidget) {
+          window.Calendly.destroyBadgeWidget();
+        } else {
+          document.querySelector(".calendly-badge-widget")?.remove();
+        }
         window.Calendly.initBadgeWidget({
-          url: publicEnv.calendlyEventUrl,
+          url: calendlyUrlFor(pathname, "badge"),
           text: publicEnv.calendlyBadgeLabel,
           color: publicEnv.calendlyBadgeColor,
           textColor: publicEnv.calendlyBadgeTextColor,
           branding: false,
         });
       })().catch(() => {
-        badgeInitPromise = null;
+        // Badge is optional; phone and /contact remain.
       });
     }
 
@@ -48,7 +55,7 @@ export function CalendlyBadge() {
       cancelled = true;
       globalThis.clearTimeout(t);
     };
-  }, []);
+  }, [pathname]);
 
   return null;
 }

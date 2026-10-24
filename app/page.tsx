@@ -9,6 +9,7 @@ import { JsonLd } from "@/components/seo/JsonLd";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { OpenHousesMapSection } from "@/components/sections/OpenHousesMapSection";
 import { rhodesRanchFaq } from "@/lib/faq-rhodes-ranch";
 import { publicEnv } from "@/lib/env";
@@ -103,6 +104,7 @@ export default function HomePage() {
         listingMountStrategy="idle"
         listingIntro="Use the same live listing search we use for Rhodes Ranch clients—filter by price and property type, then call for a private tour or a focused short list."
       />
+      <CalendlyAfterListings />
 
       <section
         className="mt-10 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/40 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
