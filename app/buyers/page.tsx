@@ -4,6 +4,7 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { BuyerCtaStrip } from "@/components/buyers/BuyerCtaStrip";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
@@ -81,6 +82,7 @@ export default function BuyersPage() {
         className="mt-10"
         listingIntro="Buyer-first home search: short-list homes in 89148 and nearby with your specialist, then book showings or compare notes with Dr. Jan Duffy when you are also selling."
       />
+      <CalendlyAfterListings />
 
       <section className="mt-14 space-y-6 text-slate-700">
         <h2 className="text-2xl font-semibold text-emerald-950">

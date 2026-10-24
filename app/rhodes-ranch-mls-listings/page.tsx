@@ -4,6 +4,7 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { FaqSection } from "@/components/sections/FaqSection";
 import { ListingTourSection } from "@/components/sections/ListingTourSection";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
@@ -100,6 +101,7 @@ export default function RhodesRanchMlsListingsPage() {
         listingIntro="Active MLS listings for Rhodes Ranch and nearby southwest Las Vegas. Save favorites, compare homes, and request private tours."
         listingMountStrategy="immediate"
       />
+      <CalendlyAfterListings />
       <ListingTourSection
         heading="Tour Rhodes Ranch MLS listings with gated access"
         headingId="tour-mls-listings-heading"

@@ -5,6 +5,7 @@ import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { BuyerCtaStrip } from "@/components/buyers/BuyerCtaStrip";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -70,6 +71,7 @@ export default function BuyersProcessPage() {
         className="mt-10"
         listingIntro="Browse current listings while you learn the purchase timeline—pause on any step to talk with your buyer specialist or schedule a call."
       />
+      <CalendlyAfterListings />
 
       <section
         className="mt-12 text-slate-700"

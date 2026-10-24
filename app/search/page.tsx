@@ -4,6 +4,7 @@ import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { SectionFigure } from "@/components/media/SectionFigure";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { GoogleSearchShareLink } from "@/components/seo/GoogleSearchShareLink";
 import { LastUpdatedNote } from "@/components/seo/LastUpdatedNote";
@@ -89,6 +90,7 @@ export default function SearchPage() {
         listingIntro="Refine by price, status, and property type, then request private tours in Rhodes Ranch, Spring Valley, and nearby southwest Las Vegas."
         listingMountStrategy="immediate"
       />
+      <CalendlyAfterListings />
       <ListingTourSection
         heading="Tour homes from this Rhodes Ranch search"
         headingId="tour-search-heading"

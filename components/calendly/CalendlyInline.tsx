@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { usePathname } from "next/navigation";
 import { ensureCalendlyReady } from "@/lib/calendly-load";
-import { publicEnv } from "@/lib/env";
+import { calendlyUrlFor } from "@/lib/calendly-url";
 import { cn } from "@/lib/utils";
 
 type CalendlyInlineProps = {
@@ -12,6 +13,7 @@ type CalendlyInlineProps = {
 /** Inline Calendly scheduler — requires client hydration. */
 export function CalendlyInline({ className }: CalendlyInlineProps) {
   const parentRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname() || "/";
 
   useEffect(() => {
     const parent = parentRef.current;
@@ -23,7 +25,7 @@ export function CalendlyInline({ className }: CalendlyInlineProps) {
         await ensureCalendlyReady();
         if (cancelled || !window.Calendly || !parentRef.current) return;
         window.Calendly.initInlineWidget({
-          url: publicEnv.calendlyEventUrl,
+          url: calendlyUrlFor(pathname, "inline"),
           parentElement: parentRef.current,
         });
       } catch {
@@ -35,7 +37,7 @@ export function CalendlyInline({ className }: CalendlyInlineProps) {
       cancelled = true;
       parent.innerHTML = "";
     };
-  }, []);
+  }, [pathname]);
 
   return (
     <div

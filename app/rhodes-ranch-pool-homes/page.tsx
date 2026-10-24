@@ -3,6 +3,7 @@ import Link from "next/link";
 import { GbpActionBar } from "@/components/gbp/GbpActionBar";
 import { PageHero } from "@/components/media/PageHero";
 import { RealScoutLeadSection } from "@/components/realscout/RealScoutLeadSection";
+import { CalendlyAfterListings } from "@/components/calendly/CalendlyAfterListings";
 import { LocalExploreNav } from "@/components/seo/LocalExploreNav";
 import { NapBlock } from "@/components/sections/NapBlock";
 import { JsonLd } from "@/components/seo/JsonLd";
@@ -84,6 +85,7 @@ export default function RhodesRanchPoolHomesPage() {
         listingIntro="Pool-oriented listings and nearby options in 89148. Use filters and map search for the right mix of price and features."
         listingMountStrategy="immediate"
       />
+      <CalendlyAfterListings />
       <ListingTourSection
         heading="Tour Rhodes Ranch pool homes in daylight"
         headingId="tour-pool-homes-heading"
