@@ -21,7 +21,9 @@ const canonicalPath = "/sell-your-rhodes-ranch-home";
 
 export const metadata: Metadata = {
   ...defaultMetadata,
-  title: `Sell Your Rhodes Ranch Home with ${siteContact.agentName}`,
+  title: {
+    absolute: `Sell Your Rhodes Ranch Home with ${siteContact.agentName}`,
+  },
   description: `Rhodes Ranch sellers: pricing, prep, marketing, and negotiation with ${siteContact.agentName} in ${siteContact.address.postalCode}. Book a listing consultation or call ${siteContact.phoneDisplay}.`,
   alternates: { canonical: canonicalPath },
   ...pageSocialMetadata(canonicalPath, {
