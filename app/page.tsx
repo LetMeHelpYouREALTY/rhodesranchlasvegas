@@ -96,6 +96,12 @@ export default function HomePage() {
           >
             Home buyer guide
           </Link>
+          <Link
+            href="/sell-your-rhodes-ranch-home"
+            className="rounded-full border border-emerald-900/25 bg-emerald-50/90 px-5 py-2.5 text-sm font-semibold text-emerald-950 shadow-sm hover:bg-emerald-100/90"
+          >
+            What&apos;s my Rhodes Ranch home worth?
+          </Link>
         </div>
       </PageHero>
 
@@ -105,6 +111,45 @@ export default function HomePage() {
         listingIntro="Use the same live listing search we use for Rhodes Ranch clients—filter by price and property type, then call for a private tour or a focused short list."
       />
       <CalendlyAfterListings />
+
+      <section
+        className="mt-10 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/40 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"
+        aria-labelledby="sellers-engage-heading"
+      >
+        <div className="grid gap-6 md:grid-cols-2 md:items-center">
+          <div>
+            <h2
+              id="sellers-engage-heading"
+              className="font-display text-2xl font-semibold tracking-tight text-emerald-950"
+            >
+              Selling your Rhodes Ranch home?
+            </h2>
+            <p className="mt-3 max-w-2xl text-stone-700">
+              Compare your home to recent closings in your section—not a generic valley estimate. Dr.
+              Jan Duffy walks through pricing, prep, marketing, and negotiation before you commit to a
+              list date.
+            </p>
+            <div className="mt-5 flex flex-wrap gap-3">
+              <Link
+                href="/sell-your-rhodes-ranch-home"
+                className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
+              >
+                What&apos;s my Rhodes Ranch home worth?
+              </Link>
+              <a
+                href={siteContact.phoneTelHref}
+                className="rounded-full border border-emerald-900/30 bg-white px-5 py-2.5 text-sm font-semibold text-emerald-950 hover:bg-emerald-50"
+              >
+                Call {siteContact.phoneDisplay}
+              </a>
+            </div>
+          </div>
+          <SectionFigure
+            imageId="section-selling-kitchen"
+            caption="Selling your Rhodes Ranch home?"
+          />
+        </div>
+      </section>
 
       <section
         className="mt-10 rounded-2xl border border-stone-200/90 bg-gradient-to-br from-white via-white to-emerald-50/40 p-6 shadow-[0_8px_30px_rgb(0_0_0_/0.06)] ring-1 ring-stone-900/5 sm:p-8"

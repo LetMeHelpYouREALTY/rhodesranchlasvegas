@@ -24,6 +24,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     pageEntry("/", { lastModified, changeFrequency: "weekly", priority: 1 }),
     pageEntry("/buyers", { lastModified, changeFrequency: "weekly", priority: 0.88 }),
     pageEntry("/buyers/process", { lastModified, changeFrequency: "monthly", priority: 0.82 }),
+    pageEntry("/sell-your-rhodes-ranch-home", {
+      lastModified,
+      changeFrequency: "monthly",
+      priority: 0.89,
+    }),
     pageEntry("/rhodes-ranch-las-vegas", {
       lastModified,
       changeFrequency: "weekly",

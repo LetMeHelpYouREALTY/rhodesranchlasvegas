@@ -302,6 +302,7 @@ export const ROUTE_HERO_IMAGE = {
   "/map": "hero-aerial-map",
   "/locations": "hero-office",
   "/contact": "hero-consultation",
+  "/sell-your-rhodes-ranch-home": "section-selling-kitchen",
   "/questions": "hero-questions",
 } as const satisfies Record<string, SiteImageId>;
 

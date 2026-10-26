@@ -204,10 +204,10 @@ export default function RhodesRanchLasVegasHubPage() {
             </ul>
             <div className="mt-6 flex flex-wrap gap-3">
               <Link
-                href="/contact"
+                href="/sell-your-rhodes-ranch-home"
                 className="rounded-full bg-emerald-900 px-5 py-2.5 text-sm font-semibold text-white shadow-md shadow-emerald-950/15 ring-1 ring-white/10 transition hover:bg-emerald-950"
               >
-                Get your home&apos;s value
+                What&apos;s my Rhodes Ranch home worth?
               </Link>
               <a
                 href={siteContact.phoneTelHref}

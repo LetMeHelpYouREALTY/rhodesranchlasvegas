@@ -8,14 +8,16 @@ export const CALENDLY_EVENTS = {
 } as const;
 
 const BUYER_PATHS = ["/buyers"];
+const SELLER_PATHS = ["/sell-your-rhodes-ranch-home"];
 
 const matches = (pathname: string, paths: string[]) =>
   paths.some((p) => pathname === p || pathname.startsWith(`${p}/`));
 
-/** Contact keeps the private 15-minute conversation; buyer routes get the buyer consult; the rest are tours. */
+/** Contact keeps the private 15-minute conversation; buyer and seller routes get the matching consult; the rest are tours. */
 export function calendlyEventForPath(pathname: string): string {
   if (pathname === "/contact") return publicEnv.calendlyEventUrl;
   if (matches(pathname, BUYER_PATHS)) return CALENDLY_EVENTS.buyer;
+  if (matches(pathname, SELLER_PATHS)) return CALENDLY_EVENTS.seller;
   return CALENDLY_EVENTS.tour;
 }
 
