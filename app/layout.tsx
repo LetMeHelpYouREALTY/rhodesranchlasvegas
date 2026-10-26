@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Geist } from "next/font/google";
 import Script from "next/script";
+import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@/components/analytics/GoogleAnalytics";
 import { CalendlyBadge } from "@/components/calendly/CalendlyBadge";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -103,6 +104,7 @@ export default function RootLayout({
         <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <SiteFooter />
         <CalendlyBadge />
+        <Analytics />
       </body>
     </html>
   );
