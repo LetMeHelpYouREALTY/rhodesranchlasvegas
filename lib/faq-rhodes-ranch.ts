@@ -57,7 +57,7 @@ export const rhodesRanchFaq: FaqItem[] = [
   {
     question: "What real estate options exist in Rhodes Ranch?",
     answer:
-      "The community includes single-family homes across a range of sizes and floor plans. Inventory and pricing change daily—use the home search on this site or ask Dr. Jan Duffy or Chance Fuller for a curated list that matches your criteria.",
+      "The community includes single-family homes across a range of sizes and floor plans. Inventory and pricing change daily—use the home search on this site or ask Dr. Jan Duffy or buyer specialist Dr. Gene Boyle for a curated list that matches your criteria.",
   },
   {
     question: "Where can I find open houses for Rhodes Ranch Las Vegas homes?",
