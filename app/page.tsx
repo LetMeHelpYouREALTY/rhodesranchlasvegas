@@ -20,6 +20,7 @@ import {
 } from "@/lib/metadata";
 import { breadcrumbListJsonLd, faqPageJsonLd, webPageJsonLd } from "@/lib/schema";
 import { siteContact } from "@/lib/site-contact";
+import FeaturedListing from "@/components/sections/FeaturedListing";
 
 export const metadata: Metadata = {
   ...defaultMetadata,
@@ -104,6 +105,12 @@ export default function HomePage() {
           </Link>
         </div>
       </PageHero>
+      <FeaturedListing
+        phone={siteContact.phoneDisplay}
+        phoneHref={siteContact.phoneTelHref}
+        siteHost="rhodesranchlasvegas.com"
+      />
+
 
       <RealScoutLeadSection
         className="mt-10"

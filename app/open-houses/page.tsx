@@ -122,7 +122,7 @@ export default function OpenHousesHubPage() {
       <ListingTourSection
         heading="Need a private showing instead of an open house?"
         headingId="private-showing-open-houses-heading"
-        body="If a listing is not holding open hours that day, we still book gated access. Call, text, or schedule so Chance Fuller can map a route that fits 89148."
+        body="If a listing is not holding open hours that day, we still book gated access. Call, text, or schedule so Dr. Gene Boyle can map a route that fits 89148."
         imageId="section-private-tour"
       />
 
