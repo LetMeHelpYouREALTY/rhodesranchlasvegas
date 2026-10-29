@@ -128,19 +128,15 @@ export const publicEnv = {
     "NEXT_PUBLIC_CONTACT_EMAIL",
     "DrDuffySells@RhodesRanchLasVegas.com",
   ),
-  /** Team / secondary inbox (e.g. Chance). */
-  secondaryContactEmail: env(
-    "NEXT_PUBLIC_SECONDARY_CONTACT_EMAIL",
-    "ChanceSells@RhodesRanchLasVegas.com",
-  ),
-  secondaryContactName: env(
-    "NEXT_PUBLIC_SECONDARY_CONTACT_NAME",
-    "Chance Fuller",
-  ),
-  secondaryContactTitle: env(
-    "NEXT_PUBLIC_SECONDARY_CONTACT_TITLE",
-    "Home Buyer Specialist",
-  ),
+  /**
+   * Buyer specialist (Dr. Jan, Oct 29 2026: Dr. Gene Boyle replaces Chance Fuller).
+   * Hard-coded so a stale NEXT_PUBLIC_SECONDARY_CONTACT_* value in Vercel can't bring back
+   * the old name. Dr. Gene Boyle is CA-licensed: never pair him with a Nevada license number.
+   * Buyer email routes to Dr. Jan's inbox until he has one on this domain.
+   */
+  secondaryContactEmail: "DrDuffySells@RhodesRanchLasVegas.com",
+  secondaryContactName: "Dr. Gene Boyle",
+  secondaryContactTitle: "Buyer Specialist",
 
   phoneE164: env("NEXT_PUBLIC_PHONE_E164", "+17026026878"),
   phoneDisplay: env("NEXT_PUBLIC_PHONE_DISPLAY", "(702) 602-6878"),
@@ -258,6 +254,10 @@ export const publicEnv = {
       "NEXT_PUBLIC_REALSCOUT_AGENT_ID",
       "QWdlbnQtMjI1MDUw",
     );
+    // Widgets need the encoded id (base64 of "Agent-<n>"); a bare numeric id renders nothing.
+    if (/^\d+$/.test(raw)) {
+      return btoa(`Agent-${raw}`);
+    }
     // Typical RealScout encoded id is base64-like; reject quotes/angle brackets for attribute safety.
     if (!/^[A-Za-z0-9+/=_-]{4,128}$/.test(raw)) {
       return "QWdlbnQtMjI1MDUw";
