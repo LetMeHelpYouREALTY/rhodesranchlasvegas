@@ -65,7 +65,7 @@ export default function HomePage() {
           Rhodes Ranch is a guard-gated, master-planned community in Spring Valley—about six miles
           southwest of the Las Vegas Strip—with a central golf course, recreation, and easy access
           to major roads, shopping, and schools.{" "}
-          <strong>{siteContact.agentName}</strong> ({siteContact.agentTitle}, Top 1% Las Vegas
+          <strong>{siteContact.agentName}</strong> ({siteContact.agentTitle}, Las Vegas
           REALTOR®) and{" "}
           <strong>{siteContact.secondaryContactName}</strong> ({siteContact.secondaryContactTitle})
           help with listings, showings, and strategy for{" "}
