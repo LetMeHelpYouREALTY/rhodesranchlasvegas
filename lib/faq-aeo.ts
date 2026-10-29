@@ -29,7 +29,7 @@ export const aeoFaq: FaqItem[] = [
   },
   {
     question: "Who is Dr. Jan Duffy and what does Rhodes Ranch Las Vegas Real Estate Division do?",
-    answer: `${siteContact.agentName} is the ${siteContact.agentTitle}, in real estate since 1983. The Rhodes Ranch Las Vegas Real Estate Division focuses on listing strategy, pricing, and marketing for sellers, and coordinates with ${siteContact.secondaryContactName} (${siteContact.secondaryContactTitle}) for purchase-side search and showings in ${siteContact.serviceAreaDescription}.`,
+    answer: `${siteContact.agentName} is the ${siteContact.agentTitle}, licensed since 2008 · 35 years in Las Vegas. The Rhodes Ranch Las Vegas Real Estate Division focuses on listing strategy, pricing, and marketing for sellers, and coordinates with ${siteContact.secondaryContactName} (${siteContact.secondaryContactTitle}) for purchase-side search and showings in ${siteContact.serviceAreaDescription}.`,
   },
   {
     question: "What is the difference between a listing agent specialist and a buyer specialist on this team?",
