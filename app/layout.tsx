@@ -10,6 +10,8 @@ import { publicEnv } from "@/lib/env";
 import { defaultMetadata } from "@/lib/metadata";
 import { realEstateAgentJsonLd, websiteJsonLd } from "@/lib/schema";
 import "./globals.css";
+import { Analytics as VercelAnalytics } from "@vercel/analytics/next";
+import { SpeedInsights as VercelSpeedInsights } from "@vercel/speed-insights/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -103,6 +105,8 @@ export default function RootLayout({
         <Script src="/ads-conversions.js" strategy="afterInteractive" />
         <SiteFooter />
         <CalendlyBadge />
+        <VercelAnalytics />
+        <VercelSpeedInsights />
       </body>
     </html>
   );
