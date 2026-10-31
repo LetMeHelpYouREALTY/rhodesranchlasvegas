@@ -53,7 +53,7 @@ export function realEstateAgentJsonLd(): Record<string, unknown> {
     "@context": "https://schema.org",
     "@type": ["RealEstateAgent", "LocalBusiness"],
     "@id": `${base}/#agent`,
-    name: siteContact.agentName,
+    name: siteContact.businessName,
     image: [
       siteImageAbsoluteUrl("hero-office"),
       siteImageAbsoluteUrl("hero-homes"),
