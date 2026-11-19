@@ -101,15 +101,10 @@ export const publicEnv = {
 
   /**
    * GA4 Web data stream — Measurement ID (Google tag).
-   * Admin reference: stream name `rhodesranchlasvegas`, numeric stream ID `14412088623`, URL must match `NEXT_PUBLIC_SITE_URL` (https://www.rhodesranchlasvegas.com, no typos).
-   * Invalid `NEXT_PUBLIC_GA_MEASUREMENT_ID` env values are ignored so production keeps this default.
+   * Admin reference: stream name `rhodesranchlasvegas`, numeric stream ID `14412088623`, URL must match `NEXT_PUBLIC_SITE_URL`.
+   * Pinned on purpose: a NEXT_PUBLIC_GA_MEASUREMENT_ID env override shipped another site's ID (G-1RRQY4S4TE) to production on 2026-11-03.
    */
-  googleAnalyticsMeasurementId: ((): string => {
-    const fromEnv = envOptional("NEXT_PUBLIC_GA_MEASUREMENT_ID")?.trim();
-    const fallback = "G-GR8HHKX1NL";
-    if (fromEnv && /^G-[A-Z0-9]{4,15}$/i.test(fromEnv)) return fromEnv;
-    return fallback;
-  })(),
+  googleAnalyticsMeasurementId: "G-GR8HHKX1NL",
 
   agentName: env("NEXT_PUBLIC_AGENT_NAME", "Dr. Jan Duffy"),
   /** Matches Google Business Profile business name (visible NAP + JSON-LD). */
